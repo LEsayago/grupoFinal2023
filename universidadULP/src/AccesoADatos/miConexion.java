@@ -1,4 +1,4 @@
-package persistencia;
+package AccesoADatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;  // 
