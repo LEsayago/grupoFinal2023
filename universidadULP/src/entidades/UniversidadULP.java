@@ -23,14 +23,17 @@ public class UniversidadULP {
     /*
      */
     public static void main(String[] args) {
-       
+ 
+        
+        
+        /*   
         try {
             //cargar driver 
                 Class.forName("org.mariadb.jdbc.Driver");
 
                 //conexion a la db 
                 Connection conexion = DriverManager.getConnection("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
-
+*/
          /*         
           // agregar alumnos a la base de datos 
            
@@ -128,7 +131,7 @@ public class UniversidadULP {
             
             System.out.println(registro);
              */
- 
+ /*
              conexion.close();
              
         } catch (ClassNotFoundException ex) {
@@ -138,6 +141,6 @@ public class UniversidadULP {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar DB.  " + ex.getMessage());
         }
-
+*/
     }
 }
