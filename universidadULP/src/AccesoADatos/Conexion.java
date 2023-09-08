@@ -5,30 +5,35 @@ import java.sql.DriverManager;  //
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
-public class miConexion{
-    private String url;
-    private String usuario;    // root
-    private String password;   // ""
-    
+public class Conexion {
+
+    private static final String url = "jdbc:mariabd://localhost/universidadulp";
+    private static final String usuario = "root";
+    private static final String password = "";
     private static Connection conexion = null;  // lo que importa  
-    
-    public miConexion(String url, String usr, String pass){     
-        this.url= url;  // "jdbc:mariabd://localhost/universidadulp"
-        usuario=usr;
-        password=pass;
+
+    private Conexion() {
     }
+
+    
+    
       
-    public  Connection buscarConexion(){
-        if (conexion==null) {  // si es la primera vez
+    public static Connection getConexion() {
+
+        if (conexion == null) {  // si es la primera vez
             try {
-                //cargamos las clases de mariadb que implementan JDBC
+
+//cargamos las clases de mariadb que implementan JDBC
                 Class.forName("org.mariadb.jdbc.Driver");
+
                 conexion = DriverManager.getConnection(url, usuario, password);
+                
             } catch (SQLException | ClassNotFoundException ex) {  // si me olvide de importar la libreria // error al cargar los drivers
-                Logger.getLogger(miConexion.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error al conectar a la Base de Datos");
             }
         }
         return conexion; // retorna la conexion establecida
     }
-  }
+}
