@@ -25,6 +25,9 @@ public class UniversidadULP {
     public static void main(String[] args) {
  
         Connection conexion = Conexion.getConexion();
+        Alumno al = new Alumno(27374176, "Espínola", "Damián", LocalDate.of(1979, Month.JUNE, 7), true );
+        AlumnoData ad= new AlumnoData();
+        ad.guardarAlumno(al);
         
         
         /*   
