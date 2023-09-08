@@ -28,7 +28,6 @@ public class Conexion {
 
                 conexion = DriverManager.getConnection(url, usuario, password);
                 
-                JOptionPane.showMessageDialog(null, "Todo en orden, Equipo 72 conectado");
                 
             } catch (SQLException | ClassNotFoundException ex) {  // si me olvide de importar la libreria // error al cargar los drivers
                 JOptionPane.showMessageDialog(null, "Error al conectar a la Base de Datos");
