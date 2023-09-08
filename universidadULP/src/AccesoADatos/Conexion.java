@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private static final String url = "jdbc:mariabd://localhost/universidadulp";
+    private static final String url = "jdbc:mariadb://localhost/universidadulp";
     private static final String usuario = "root";
     private static final String password = "";
     private static Connection conexion = null;  // lo que importa  
@@ -27,6 +27,8 @@ public class Conexion {
                 Class.forName("org.mariadb.jdbc.Driver");
 
                 conexion = DriverManager.getConnection(url, usuario, password);
+                
+                JOptionPane.showMessageDialog(null, "Todo en orden, Equipo 72 conectado");
                 
             } catch (SQLException | ClassNotFoundException ex) {  // si me olvide de importar la libreria // error al cargar los drivers
                 JOptionPane.showMessageDialog(null, "Error al conectar a la Base de Datos");

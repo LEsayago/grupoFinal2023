@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 import javax.swing.JOptionPane;
-
+import AccesoADatos.*;
 /**
  *
  * @author Lucas E. Sayago
@@ -24,6 +24,7 @@ public class UniversidadULP {
      */
     public static void main(String[] args) {
  
+        Connection conexion = Conexion.getConexion();
         
         
         /*   
