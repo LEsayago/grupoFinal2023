@@ -231,6 +231,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
                 jCAlumnos.addItem(resultado.getInt("dni") + ", " + resultado.getString("apellido") + ", " + resultado.getString("nombre"));
 
+                
             }
 
         } catch (ClassNotFoundException ex) {
