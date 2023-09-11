@@ -29,7 +29,12 @@ public class UniversidadULP {
         AlumnoData ad= new AlumnoData();
         //ad.guardarAlumno(al);
        // ad.modificarAlumno(al);
-        ad.eliminarAlumno(9);
+        //ad.eliminarAlumno(9);
+        //Alumno alumnoEncontrado= ad.buscarAlumno(7);
+        
+        //System.out.println("Nombre alumno buscado : "+ alumnoEncontrado.getNombre());
+        
+        
         
         /*   
         try {
