@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import javax.swing.JOptionPane;
 import AccesoADatos.*;
+
 /**
  *
  * @author Lucas E. Sayago
@@ -23,28 +24,30 @@ public class UniversidadULP {
     /*
      */
     public static void main(String[] args) {
- 
+
         Connection conexion = Conexion.getConexion();
-        Alumno al = new Alumno(11,27374176, "Espínola", "Damián Raúl", LocalDate.of(1979, Month.JUNE, 7), true );
-        AlumnoData ad= new AlumnoData();
+        Alumno al = new Alumno(11, 27374176, "Espínola", "Damián Raúl", LocalDate.of(1979, Month.JUNE, 7), true);
+        AlumnoData ad = new AlumnoData();
         //ad.guardarAlumno(al);
-       // ad.modificarAlumno(al);
+        // ad.modificarAlumno(al);
         //ad.eliminarAlumno(9);
         //Alumno alumnoEncontrado= ad.buscarAlumno(7);
-        
+
         //System.out.println("Nombre alumno buscado : "+ alumnoEncontrado.getNombre());
-        
-        
-        
-        /*   
+        /* 
+      for (Alumno alumno : ad.listarAlumnos()) {
+            System.out.println(alumno.toString());
+      }
+         */
+ /*   
         try {
             //cargar driver 
                 Class.forName("org.mariadb.jdbc.Driver");
 
                 //conexion a la db 
                 Connection conexion = DriverManager.getConnection("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
-*/
-         /*         
+         */
+ /*         
           // agregar alumnos a la base de datos 
            
            String sql = "INSERT INTO alumno( dni, apellido, nombre, fechaDeNacimiento, estado) "
@@ -56,9 +59,9 @@ public class UniversidadULP {
             int registro = ps.executeUpdate();
             
             System.out.println("Lineas afectadas : "+registro);
-          */   
-            //agregar materias 
-            /*
+         */
+        //agregar materias 
+        /*
             String sql = "INSERT INTO materia( nombre, año , estado) "
                     + "VALUES ('Matemáticas','2023',true),"
                     + "('Historia','2023',true),"
@@ -70,7 +73,7 @@ public class UniversidadULP {
             int registro = ps.executeUpdate();
 
             System.out.println(registro);
-             */
+         */
  /*
             // agregar alumnos a materia 
             String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) "
@@ -82,10 +85,10 @@ public class UniversidadULP {
             int registro = ps.executeUpdate();
 
             System.out.println(registro);
-             */
-            // Listar alumnos con nota superior a
+         */
+        // Listar alumnos con nota superior a
 
-            /*       String sql = "SELECT alumno.dni, alumno.apellido, alumno.nombre "
+        /*       String sql = "SELECT alumno.dni, alumno.apellido, alumno.nombre "
                      + "FROM inscripcion JOIN alumno ON (alumno.idAlumno= inscripcion.idAlumno) "
                      + "WHERE inscripcion.nota>8";*/
  /* 
@@ -107,7 +110,7 @@ public class UniversidadULP {
 
                 i++;
             }
-             */
+         */
  /*
             // eliminar alumno
             String sql = "DELETE FROM inscripcion WHERE idMateria=2 AND idAlumno=3 or idmateria=4 AND idAlumno=8";
@@ -116,8 +119,8 @@ public class UniversidadULP {
             int registro = ps.executeUpdate();
 
             System.out.println(registro);
-*/
-            /*    
+         */
+ /*    
   
             //modificar datos en la base
 
@@ -129,7 +132,7 @@ public class UniversidadULP {
             
             System.out.println(registro);
            
-             */
+         */
  /*
         //eliminar datos de la base
 
@@ -140,7 +143,7 @@ public class UniversidadULP {
             int registro = ps.executeUpdate();
             
             System.out.println(registro);
-             */
+         */
  /*
              conexion.close();
              
@@ -151,6 +154,6 @@ public class UniversidadULP {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectar DB.  " + ex.getMessage());
         }
-*/
+         */
     }
 }

@@ -2,6 +2,8 @@ package AccesoADatos;
 
 import entidades.Alumno;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -105,17 +107,17 @@ public class AlumnoData {
 
                 JOptionPane.showMessageDialog(null, "No existe alumno con ese ID ");
             }
-            
+
             ps.close();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
         }
-return alumno;
+        return alumno;
 
     }
-    
-        public Alumno buscarAlumnoPorDni(int dni) {
+
+    public Alumno buscarAlumnoPorDni(int dni) {
 
         String sql = "SELECT  idAlumno, apellido, nombre, fechaDeNacimiento, estado FROM alumno WHERE dni = ? AND estado=1";
 
@@ -140,13 +142,46 @@ return alumno;
 
                 JOptionPane.showMessageDialog(null, "No existe alumno con ese DNI ");
             }
-            
+
             ps.close();
-            
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
         }
-return alumno;
+        return alumno;
+
+    }
+
+    public List<Alumno> listarAlumnos() {
+
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT  * FROM alumno WHERE  estado=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {                
+                
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNac(rs.getDate("fechaDeNacimiento").toLocalDate());
+                alumno.setEstado(rs.getBoolean("estado"));
+                
+                alumnos.add(alumno);
+
+            } 
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos. "+ ex.getMessage() );
+        }
+        return alumnos;
 
     }
 
