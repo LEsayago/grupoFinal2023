@@ -28,8 +28,8 @@ public class UniversidadULP {
         Alumno al = new Alumno(11,27374176, "Espínola", "Damián Raúl", LocalDate.of(1979, Month.JUNE, 7), true );
         AlumnoData ad= new AlumnoData();
         //ad.guardarAlumno(al);
-        ad.modificarAlumno(al);
-        
+       // ad.modificarAlumno(al);
+        ad.eliminarAlumno(9);
         
         /*   
         try {

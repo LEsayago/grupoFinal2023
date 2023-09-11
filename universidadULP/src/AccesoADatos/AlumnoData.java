@@ -71,9 +71,37 @@ public class AlumnoData {
 
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Alumno Elimano");
+                JOptionPane.showMessageDialog(null, "Alumno Eliminado");
 
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
+        }
+
+    }
+
+    public Alumno buscarAlumno(int Id) {
+
+        String sql = "SELECT  dni, apellido, nombre, fechaDeNacimiento, estado FROM alumno WHERE idAlumno = ?";
+
+        Alumno alumno=null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, Id);
+            
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                
+                alumno = new  Alumno();
+                    alumno.setIdAlumno(Id);
+                    alumno.setDni(rs.getInt("dni"));
+                    alumno.setApellido(rs.getString("apellido"));
+                    alumno.setNombre(rs.getString("nombre"));
+            }
+            
+            
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
         }
