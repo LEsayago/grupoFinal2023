@@ -84,27 +84,34 @@ public class AlumnoData {
 
         String sql = "SELECT  dni, apellido, nombre, fechaDeNacimiento, estado FROM alumno WHERE idAlumno = ?";
 
-        Alumno alumno=null;
+        Alumno alumno = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, Id);
-            
-            ResultSet rs= ps.executeQuery();
-            
-            if(rs.next()){
-                
-                alumno = new  Alumno();
-                    alumno.setIdAlumno(Id);
-                    alumno.setDni(rs.getInt("dni"));
-                    alumno.setApellido(rs.getString("apellido"));
-                    alumno.setNombre(rs.getString("nombre"));
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                alumno = new Alumno();
+                alumno.setIdAlumno(Id);
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNac(rs.getDate("fechaDeNacimiento").toLocalDate());
+                alumno.setEstado(rs.getBoolean("estado"));
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "No existe alumno con ese ID ");
             }
             
-            
+            ps.close();
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
         }
+return alumno;
 
     }
 
