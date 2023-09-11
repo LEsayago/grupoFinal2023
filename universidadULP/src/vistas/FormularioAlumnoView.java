@@ -38,7 +38,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jTNombre = new javax.swing.JTextField();
         jRBActivo = new javax.swing.JRadioButton();
         jRBInactivo = new javax.swing.JRadioButton();
-        jDCFechaDeNacimiento = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jBBuscar = new javax.swing.JButton();
         jBNuevo = new javax.swing.JButton();
@@ -88,7 +87,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(67, 67, 67)
@@ -104,9 +103,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jBNuevo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBEliminar)
-                            .addComponent(jDCFechaDeNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jBEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -144,10 +141,8 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jRBActivo)
                     .addComponent(jRBInactivo))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jDCFechaDeNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel5)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo)
@@ -173,7 +168,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBNuevo;
-    private com.toedter.calendar.JDateChooser jDCFechaDeNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

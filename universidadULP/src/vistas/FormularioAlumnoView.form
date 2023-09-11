@@ -24,7 +24,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
@@ -43,10 +43,7 @@
                           <Component id="jBNuevo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
-                          <Component id="jDCFechaDeNacimiento" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -96,11 +93,8 @@
                   <Component id="jRBActivo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jRBInactivo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDCFechaDeNacimiento" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jBNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -153,8 +147,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Inactivo"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDCFechaDeNacimiento">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
