@@ -6,10 +6,7 @@
 package AccesoADatos;
 
 import entidades.Inscripcion;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import AccesoADatos.AlumnoData;
