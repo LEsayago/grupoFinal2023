@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/AccesoADatos/miConexion.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/vistas/FormularioAlumnoView.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/entidades/Materia.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/entidades/Alumno.java</file>
-            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/entidades/Inscripcion.java</file>
             <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/entidades/UniversidadULP.java</file>
+            <file>file:/C:/Users/Usuario/Documents/GitHub/grupoFinal2023/universidadULP/src/AccesoADatos/AlumnoData.java</file>
         </group>
     </open-files>
 </project-private>

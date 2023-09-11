@@ -37,24 +37,47 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error sql");
         }
     }
-    public void modificarAlumno(Alumno alumno){
-        String sql= "UPDATE alumno SET dni= ?, apellido = ?, nombre = ?, fechaDeNacimiento= ? "
+
+    public void modificarAlumno(Alumno alumno) {
+        String sql = "UPDATE alumno SET dni= ?, apellido = ?, nombre = ?, fechaDeNacimiento= ? "
                 + "WHERE idAlumno= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-           ps.setInt(1, alumno.getDni());
+            ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
             ps.setInt(5, alumno.getIdAlumno());
-            int exito= ps.executeUpdate();
-            if(exito==1){
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Alumno modificado");
             }
-            
+
         } catch (SQLException ex) {
-            Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
         }
+    }
+
+    public void eliminarAlumno(int id) {
+
+        try {
+            String sql = "UPDATE alumno set estado = 0 WHERE idAlumno= ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+
+                JOptionPane.showMessageDialog(null, "Alumno Elimano");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
+        }
+
     }
 
 }
