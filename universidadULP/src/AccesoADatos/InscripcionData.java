@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
+import entidades.Materia;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -115,5 +116,26 @@ public class InscripcionData {
         
         
         return inscripciones;
+    }
+     public List<Materia> obtenerMateriasCursadas(int id) {
+
+        ArrayList <Materia> materias = new ArrayList<>();
+        MateriaData md = new MateriaData();
+        
+        String sql= "SELECT * FROM inscripcion WHERE idAlumno= ?" ;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next())  {
+                Materia materia = md.buscarMateria(rs.getInt("idMateria"));
+                materias.add(materia);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
+        }     
+        return materias;
     }
 }
