@@ -61,6 +61,7 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripciones() {
 
         ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+        AlumnoData ad = new AlumnoData();
         
         String sql= "SELECT * FROM inscripcion " ;
         
@@ -72,6 +73,8 @@ public class InscripcionData {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
+                inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
+                
                 //terminar objetos !!!
             }
             
