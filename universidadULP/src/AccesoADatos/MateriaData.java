@@ -3,6 +3,7 @@ package AccesoADatos;
 
 import entidades.Materia;
 import java.sql.*;
+import java.util.*;
 
 
 
@@ -119,7 +120,36 @@ public class MateriaData {
         return materia;
     }
     
-      
+      public List<Materia> listarMaterias() {
+
+        ArrayList<Materia> materias = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT  * FROM materia WHERE  estado = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {                
+                
+                Materia materia = new Materia();
+                
+                
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(rs.getBoolean("estado"));
+                materias.add(materia);
+            } 
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos. "+ ex.getMessage() );
+        }
+        return materias;
+
+    }
       
       
 
