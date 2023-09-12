@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -61,81 +61,90 @@ public class InscripcionData {
 
     public List<Inscripcion> obtenerInscripciones() {
 
-        ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
-        
-        String sql= "SELECT * FROM inscripcion " ;
-        
+
+        String sql = "SELECT * FROM inscripcion ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            while (rs.next())  {
+
+            while (rs.next()) {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
-                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));     
+                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));
                 inscripciones.add(inscripcion);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
-        
-        
+
         return inscripciones;
     }
 
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
 
-        ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+        ArrayList<Inscripcion> inscripciones = new ArrayList<>();
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
-        
-        String sql= "SELECT * FROM inscripcion WHERE idAlumno= ?" ;
-        
+
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno= ?";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
-            
-            while (rs.next())  {
+
+            while (rs.next()) {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
-                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));     
+                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));
                 inscripciones.add(inscripcion);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
         }
-        
-        
+
         return inscripciones;
     }
-     public List<Materia> obtenerMateriasCursadas(int id) {
 
-        ArrayList <Materia> materias = new ArrayList<>();
+    public List<Materia> obtenerMateriasCursadas(int id) {
+
+        ArrayList<Materia> materias = new ArrayList<>();
         MateriaData md = new MateriaData();
-        
-        String sql= "SELECT * FROM inscripcion WHERE idAlumno= ?" ;
+
+        String sql = "SELECT * FROM inscripcion WHERE idAlumno= ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            
-            while (rs.next())  {
+
+            while (rs.next()) {
                 Materia materia = md.buscarMateria(rs.getInt("idMateria"));
                 materias.add(materia);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
-        }     
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
+        }
         return materias;
+    }
+
+    public List<Materia> obtenerMateriasNoCursadas(int id) {
+
+        MateriaData md = new MateriaData();
+        ArrayList<Materia> materias = (ArrayList<Materia>) obtenerMateriasCursadas(id);
+        ArrayList<Materia> materiasTodas = (ArrayList<Materia>) md.listarMaterias();
+        materiasTodas.removeAll(materias);
+
+        return materiasTodas;
     }
 }
