@@ -62,6 +62,7 @@ public class InscripcionData {
 
         ArrayList <Inscripcion> inscripciones = new ArrayList<>();
         AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
         
         String sql= "SELECT * FROM inscripcion " ;
         
@@ -74,17 +75,16 @@ public class InscripcionData {
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
-                
-                //terminar objetos !!!
+                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));     
+                inscripciones.add(inscripcion);
             }
-            
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
         }
         
         
-        return null;
+        return inscripciones;
     }
 
 }
