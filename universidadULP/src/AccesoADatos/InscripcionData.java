@@ -147,4 +147,21 @@ public class InscripcionData {
 
         return materiasTodas;
     }
+    public void borrarInscripcionesMateriaAlumno(int idAlumno, int idMateria){
+        
+        String sql="DELETE FROM inscripcion WHERE idMateria= ? AND idAlumno= ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ps.setInt(2, idMateria);
+           int exito= ps.executeUpdate();
+           if(exito==1){
+               JOptionPane.showMessageDialog(null," Listo!");
+           }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null," Error! "+ex);
+        }
+        
+        
+    }
 }
