@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -87,4 +87,33 @@ public class InscripcionData {
         return inscripciones;
     }
 
+    public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
+
+        ArrayList <Inscripcion> inscripciones = new ArrayList<>();
+        AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
+        
+        String sql= "SELECT * FROM inscripcion WHERE idAlumno= ?" ;
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next())  {
+                Inscripcion inscripcion = new Inscripcion();
+                inscripcion.setNota(rs.getDouble("nota"));
+                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
+                inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
+                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));     
+                inscripciones.add(inscripcion);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion"+ ex.getMessage());
+        }
+        
+        
+        return inscripciones;
+    }
 }
