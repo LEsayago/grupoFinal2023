@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
+import entidades.Alumno;
 import entidades.Materia;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -159,9 +160,52 @@ public class InscripcionData {
                JOptionPane.showMessageDialog(null," Listo!");
            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null," Error! "+ex);
+            JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
         }
         
         
     }
-}
+    
+        public void actualizarNota(int idAlumno, int IdMateria, double nota){
+            
+            String sql= "UPDATE inscripcion SET nota=?  WHERE idAlumno=? AND idMateria=?";
+            
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setDouble(1, nota);
+            ps.setInt(2, idAlumno);
+            ps.setInt(2, IdMateria);
+            int exito= ps.executeUpdate();
+           if(exito==1){
+               JOptionPane.showMessageDialog(null," Nota actualizada.");
+           }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
+        }
+        }
+
+    
+    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+ 
+        String sql = "SELECT * FROM inscripcion WHERE idMateria= ?";
+   /*
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+        }
+        
+        
+        
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
+        }
+        
+        */
+        return alumnos;
+    } 
+
+}     
+    
+
