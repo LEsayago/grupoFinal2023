@@ -25,13 +25,12 @@ import java.util.logging.Logger;
 public class InscripcionData {
 
     private Connection con = null;
-    private MateriaData matdata= new MateriaData();
-    private AlumnoData alumnoData= new AlumnoData();
+    private MateriaData matdata = new MateriaData();
+    private AlumnoData alumnoData = new AlumnoData();
 
     public InscripcionData() {
 
         con = Conexion.getConexion();
-        
 
     }
 
@@ -69,7 +68,6 @@ public class InscripcionData {
 
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
 
-
         String sql = "SELECT * FROM inscripcion ";
 
         try {
@@ -78,8 +76,8 @@ public class InscripcionData {
 
             while (rs.next()) {
                 Inscripcion inscripcion = new Inscripcion();
-                
-                inscripcion.setNota(rs.getDouble("nota"));         
+
+                inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 inscripcion.setAlumno(alumnoData.buscarAlumno(rs.getInt("idAlumno")));
                 inscripcion.setMateria(matdata.buscarMateria(rs.getInt("idMateria")));
@@ -96,8 +94,6 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
 
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-        AlumnoData ad = new AlumnoData();
-        MateriaData md = new MateriaData();
 
         String sql = "SELECT * FROM inscripcion WHERE idAlumno= ?";
 
@@ -110,10 +106,11 @@ public class InscripcionData {
                 Inscripcion inscripcion = new Inscripcion();
                 inscripcion.setNota(rs.getDouble("nota"));
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-                inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
-                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));
+                inscripcion.setAlumno(alumnoData.buscarAlumno(rs.getInt("idAlumno")));
+                inscripcion.setMateria(matdata.buscarMateria(rs.getInt("idMateria")));
                 inscripciones.add(inscripcion);
             }
+            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
@@ -137,6 +134,7 @@ public class InscripcionData {
                 Materia materia = md.buscarMateria(rs.getInt("idMateria"));
                 materias.add(materia);
             }
+            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());

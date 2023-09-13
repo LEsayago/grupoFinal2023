@@ -41,14 +41,24 @@ public class UniversidadULP {
        
       // idata.borrarInscripcionesMateriaAlumno(8, 3);
 
-        for (Inscripcion x:idata.obtenerInscripciones()){
+       /* for (Inscripcion x:idata.obtenerInscripciones()){
             
             System.out.println("Inscripcion N°: "+ x.getIdInscripcion());
             System.out.println("Apellido: "+ x.getAlumno().getApellido());
             System.out.println("Materia: "+ x.getMateria().getNombre());
             System.out.println("***************************************************");
         }
-        
+        */
+       for (Materia m:idata.obtenerMateriasCursadas(7)){
+       
+           Alumno alumno1= ad.buscarAlumno(7);
+           System.out.println("Alumno: "+alumno1);
+           System.out.println("Materia: "+m.getNombre());
+           System.out.println("Año: "+m.getAño());
+       
+       }
+           
+           
         
                 
                 
