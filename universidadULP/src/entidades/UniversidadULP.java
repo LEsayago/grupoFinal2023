@@ -5,15 +5,11 @@
  */
 package entidades;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.*;
 import java.time.Month;
 import javax.swing.JOptionPane;
 import AccesoADatos.*;
+import java.time.LocalDate;
 
 /**
  *
@@ -26,13 +22,26 @@ public class UniversidadULP {
     public static void main(String[] args) {
 
         Connection conexion = Conexion.getConexion();
-        Alumno al = new Alumno(11, 27374176, "Espínola", "Damián Raúl", LocalDate.of(1979, Month.JUNE, 7), true);
+
         AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
+        InscripcionData idata = new InscripcionData();
+
+        Alumno alumno = ad.buscarAlumno(9);
+      //  JOptionPane.showMessageDialog(null, damian.toString());
+        
+        Materia materia = md.buscarMateria(55);
+
+      //   JOptionPane.showMessageDialog(null, programacion.toString());
+        
+        Inscripcion insc = new Inscripcion(alumno, materia, 10);
+        idata.guardarInscripcion(insc);
+        
+
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);
         //ad.eliminarAlumno(9);
         //Alumno alumnoEncontrado= ad.buscarAlumno(7);
-
         //System.out.println("Nombre alumno buscado : "+ alumnoEncontrado.getNombre());
         /* 
       for (Alumno alumno : ad.listarAlumnos()) {

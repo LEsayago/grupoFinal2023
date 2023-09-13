@@ -28,7 +28,7 @@ public class InscripcionData {
     private MateriaData matdata;
     private AlumnoData alumnoData;
 
-    private InscripcionData() {
+    public InscripcionData() {
 
         con = Conexion.getConexion();
 
@@ -41,21 +41,21 @@ public class InscripcionData {
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-          
+
             ps.setDouble(1, insc.getNota());
             ps.setInt(2, insc.getAlumno().getIdAlumno());
             ps.setInt(3, insc.getMateria().getIdMateria());
-
+            ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                
+
                 insc.setIdInscripcion(rs.getInt(1));
-                
+
                 JOptionPane.showMessageDialog(null, "Inscripcion realizada con exito");
-                
+
             }
-           
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
