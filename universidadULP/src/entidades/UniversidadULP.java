@@ -43,9 +43,12 @@ public class UniversidadULP {
 
         for (Inscripcion x:idata.obtenerInscripciones()){
             
-            JOptionPane.showMessageDialog(null,x.toString());
-  
+            System.out.println("Inscripcion N°: "+ x.getIdInscripcion());
+            System.out.println("Apellido: "+ x.getAlumno().getApellido());
+            System.out.println("Materia: "+ x.getMateria().getNombre());
+            System.out.println("***************************************************");
         }
+        
         
                 
                 
