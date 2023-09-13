@@ -158,11 +158,15 @@ public class InscripcionData {
         String sql = "DELETE FROM inscripcion WHERE idMateria= ? AND idAlumno= ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idAlumno);
-            ps.setInt(2, idMateria);
+
+            ps.setInt(1, idMateria);
+            ps.setInt(2, idAlumno);
+
             int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, " Listo!");
+
+            if (exito > 0) {
+
+                JOptionPane.showMessageDialog(null, " Inscripcion borrada");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());

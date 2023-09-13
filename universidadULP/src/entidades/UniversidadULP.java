@@ -37,7 +37,9 @@ public class UniversidadULP {
         Inscripcion insc = new Inscripcion(alumno, materia, 10);
        // idata.guardarInscripcion(insc);
    
-       idata.actualizarNota(8, 3, 7.0);
+      // idata.actualizarNota(8, 3, 7.0);
+       
+       idata.borrarInscripcionesMateriaAlumno(8, 3);
 
 
         //ad.guardarAlumno(al);
