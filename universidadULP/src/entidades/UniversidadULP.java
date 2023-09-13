@@ -39,9 +39,16 @@ public class UniversidadULP {
    
       // idata.actualizarNota(8, 3, 7.0);
        
-       idata.borrarInscripcionesMateriaAlumno(8, 3);
+      // idata.borrarInscripcionesMateriaAlumno(8, 3);
 
-
+        for (Inscripcion x:idata.obtenerInscripciones()){
+            
+            JOptionPane.showMessageDialog(null,x.toString());
+  
+        }
+        
+                
+                
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);
         //ad.eliminarAlumno(9);

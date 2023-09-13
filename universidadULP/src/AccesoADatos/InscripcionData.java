@@ -67,8 +67,7 @@ public class InscripcionData {
     public List<Inscripcion> obtenerInscripciones() {
 
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
-        AlumnoData ad = new AlumnoData();
-        MateriaData md = new MateriaData();
+
 
         String sql = "SELECT * FROM inscripcion ";
 
@@ -78,10 +77,11 @@ public class InscripcionData {
 
             while (rs.next()) {
                 Inscripcion inscripcion = new Inscripcion();
-                inscripcion.setNota(rs.getDouble("nota"));
+                
+                inscripcion.setNota(rs.getDouble("nota"));         
                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
-                inscripcion.setAlumno(ad.buscarAlumno(rs.getInt("idAlumno")));
-                inscripcion.setMateria(md.buscarMateria(rs.getInt("idMateria")));
+                inscripcion.setAlumno(alumnoData.buscarAlumno(rs.getInt("idAlumno")));
+                inscripcion.setMateria(matdata.buscarMateria(rs.getInt("idMateria")));
                 inscripciones.add(inscripcion);
             }
 
