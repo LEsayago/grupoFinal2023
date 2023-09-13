@@ -54,7 +54,7 @@ public class UniversidadULP {
            Alumno alumno1= ad.buscarAlumno(7);
            System.out.println("Alumno: "+alumno1);
            System.out.println("Materia: "+m.getNombre());
-           System.out.println("Año: "+m.getAño());
+           System.out.println("Año: "+m.getAnioMateria());
        
        }
            
