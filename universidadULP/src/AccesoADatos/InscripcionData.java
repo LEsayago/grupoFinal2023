@@ -25,12 +25,13 @@ import java.util.logging.Logger;
 public class InscripcionData {
 
     private Connection con = null;
-    private MateriaData matdata;
-    private AlumnoData alumnoData;
+    private MateriaData matdata= new MateriaData();
+    private AlumnoData alumnoData= new AlumnoData();
 
     public InscripcionData() {
 
         con = Conexion.getConexion();
+        
 
     }
 
