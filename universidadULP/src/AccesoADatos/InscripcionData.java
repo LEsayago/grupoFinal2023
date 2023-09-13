@@ -36,22 +36,26 @@ public class InscripcionData {
 
     public void guardarInscripcion(Inscripcion insc) {
 
-        String sql = "INSERT INTO inscripcion(idInscripcion, nota, idAlumno, idMateria)"
-                + "VALUES (?,?,?,?)";
+        String sql = "INSERT INTO inscripcion( nota, idAlumno, idMateria)"
+                + "VALUES (?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, insc.getIdInscripcion());
-            ps.setDouble(2, insc.getNota());
-            ps.setInt(3, insc.getAlumno().getIdAlumno());
-            ps.setInt(4, insc.getMateria().getIdMateria());
+          
+            ps.setDouble(1, insc.getNota());
+            ps.setInt(2, insc.getAlumno().getIdAlumno());
+            ps.setInt(3, insc.getMateria().getIdMateria());
 
-            int exito = ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
 
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Se guardo la inscripcion correctamente");
-
+            if (rs.next()) {
+                
+                insc.setIdInscripcion(rs.getInt(1));
+                
+                JOptionPane.showMessageDialog(null, "Inscripcion realizada con exito");
+                
             }
+           
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
