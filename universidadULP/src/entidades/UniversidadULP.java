@@ -55,9 +55,14 @@ public class UniversidadULP {
            System.out.println("Alumno: "+alumno1);
            System.out.println("Materia: "+m.getNombre());
            System.out.println("Año: "+m.getAnioMateria());
-       
        }
-           
+        System.out.println("********************************************");
+           for (Materia m:idata.obtenerMateriasNoCursadas(7)){
+       
+           Alumno alumno1= ad.buscarAlumno(7);
+           System.out.println("Alumno: "+alumno1);
+           System.out.println("Materia: "+m.getNombre());
+           System.out.println("Año: "+m.getAnioMateria());
            
         
                 
