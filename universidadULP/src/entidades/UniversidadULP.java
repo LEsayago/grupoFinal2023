@@ -35,8 +35,10 @@ public class UniversidadULP {
       //   JOptionPane.showMessageDialog(null, programacion.toString());
         
         Inscripcion insc = new Inscripcion(alumno, materia, 10);
-        idata.guardarInscripcion(insc);
-        
+       // idata.guardarInscripcion(insc);
+   
+       idata.actualizarNota(8, 3, 7.0);
+
 
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);

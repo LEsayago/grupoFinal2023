@@ -178,13 +178,13 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
-            ps.setInt(2, IdMateria);
+            ps.setInt(3, IdMateria);
             int exito = ps.executeUpdate();
-            if (exito == 1) {
+            if (exito > 0) {
                 JOptionPane.showMessageDialog(null, " Nota actualizada.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " " + ex.getMessage());
         }
     }
 
