@@ -148,64 +148,68 @@ public class InscripcionData {
 
         return materiasTodas;
     }
-    public void borrarInscripcionesMateriaAlumno(int idAlumno, int idMateria){
-        
-        String sql="DELETE FROM inscripcion WHERE idMateria= ? AND idAlumno= ? ";
+
+    public void borrarInscripcionesMateriaAlumno(int idAlumno, int idMateria) {
+
+        String sql = "DELETE FROM inscripcion WHERE idMateria= ? AND idAlumno= ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-           int exito= ps.executeUpdate();
-           if(exito==1){
-               JOptionPane.showMessageDialog(null," Listo!");
-           }
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, " Listo!");
+            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());
         }
-        
-        
+
     }
-    
-        public void actualizarNota(int idAlumno, int IdMateria, double nota){
-            
-            String sql= "UPDATE inscripcion SET nota=?  WHERE idAlumno=? AND idMateria=?";
-            
+
+    public void actualizarNota(int idAlumno, int IdMateria, double nota) {
+
+        String sql = "UPDATE inscripcion SET nota=?  WHERE idAlumno=? AND idMateria=?";
+
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setDouble(1, nota);
             ps.setInt(2, idAlumno);
             ps.setInt(2, IdMateria);
-            int exito= ps.executeUpdate();
-           if(exito==1){
-               JOptionPane.showMessageDialog(null," Nota actualizada.");
-           }
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, " Nota actualizada.");
+            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());
         }
-        }
+    }
 
-    
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+
         ArrayList<Alumno> alumnos = new ArrayList<>();
- 
+
         String sql = "SELECT * FROM inscripcion WHERE idMateria= ?";
-   /*
+
         try {
+
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
-        }
-        
-        
-        
-            
+
+            while (rs.next()) {
+
+                Alumno alumno = alumnoData.buscarAlumno(rs.getInt("idAlumno"));
+
+                alumnos.add(alumno);
+
+            }
+            ps.close();
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null," Error! "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());
         }
-        
-        */
+        ;
+
         return alumnos;
-    } 
+    }
 
-}     
-    
-
+}
