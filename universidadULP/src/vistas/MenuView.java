@@ -36,7 +36,7 @@ public class MenuView extends javax.swing.JFrame {
         jMFormuMateria = new javax.swing.JMenuItem();
         jMAdmin = new javax.swing.JMenu();
         jMinscripcion = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jMCargadenotas = new javax.swing.JMenuItem();
         jMConsultas = new javax.swing.JMenu();
         jMAlumnoPorMateria = new javax.swing.JMenuItem();
         jMSalir = new javax.swing.JMenu();
@@ -88,17 +88,22 @@ public class MenuView extends javax.swing.JFrame {
         });
         jMAdmin.add(jMinscripcion);
 
-        jMenuItem2.setText("Manipulacion de notas");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMCargadenotas.setText("Manipulacion de notas");
+        jMCargadenotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMCargadenotasActionPerformed(evt);
             }
         });
-        jMAdmin.add(jMenuItem2);
+        jMAdmin.add(jMCargadenotas);
 
         jMenuBar1.add(jMAdmin);
 
         jMConsultas.setText("Consultas");
+        jMConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMConsultasActionPerformed(evt);
+            }
+        });
 
         jMAlumnoPorMateria.setText("Alumno por materia");
         jMConsultas.add(jMAlumnoPorMateria);
@@ -152,10 +157,22 @@ public class MenuView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMFormuMateriaActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMCargadenotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCargadenotasActionPerformed
+        jDEscritorioMenu.removeAll();
+        jDEscritorioMenu.repaint();
+        CargadeNotasView cdn = new CargadeNotasView(); 
+        
+        cdn.setVisible(true);
+        
+        jDEscritorioMenu.add(cdn);
+        
+         jDEscritorioMenu.moveToFront(cdn);
+         
+    }//GEN-LAST:event_jMCargadenotasActionPerformed
 
+    
+    
+    
     private void jMinscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinscripcionActionPerformed
        // Se borra todo lo que contenga el escritorio en el momento
         jDEscritorioMenu.removeAll();
@@ -189,6 +206,10 @@ public class MenuView extends javax.swing.JFrame {
       jDEscritorioMenu.moveToFront(formularioAlumnoView);
       
     }//GEN-LAST:event_jMFormuAlumnoActionPerformed
+
+    private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMConsultasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,13 +251,13 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JMenu jMAdmin;
     private javax.swing.JMenu jMAlumno;
     private javax.swing.JMenuItem jMAlumnoPorMateria;
+    private javax.swing.JMenuItem jMCargadenotas;
     private javax.swing.JMenu jMConsultas;
     private javax.swing.JMenuItem jMFormuAlumno;
     private javax.swing.JMenuItem jMFormuMateria;
     private javax.swing.JMenu jMMateria;
     private javax.swing.JMenu jMSalir;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMinscripcion;
     // End of variables declaration//GEN-END:variables
 }
