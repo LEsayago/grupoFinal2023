@@ -142,14 +142,34 @@ public class InscripcionData {
         return materias;
     }
 
-    public List<Materia> obtenerMateriasNoCursadas(int id) {
+    public List<Materia> obtenerMateriasNoCursadas(int idAlumno) {
+        
+     ArrayList<Materia> materiasNocursadas= new  ArrayList<>();
+        
+     String sql= "SELECT * FROM materia WHERE estado = 1 and  idMateria not in (SELECT * FROM inscripcion WHERE idAlumno = ?) ";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno);
+            ResultSet rs= ps.executeQuery();
+            
+            while (rs.next()) {      
+                
+                Materia materia = matdata.buscarMateria(rs.getInt("idMateria")); // genera objeto Materia
+                
+                materiasNocursadas.add(materia);// Aca agrego el objeto
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
+        }
+        
 
-        MateriaData md = new MateriaData();
-        ArrayList<Materia> materias = (ArrayList<Materia>) obtenerMateriasCursadas(id);
-        ArrayList<Materia> materiasTodas = (ArrayList<Materia>) md.listarMaterias();
-        materiasTodas.removeAll(materias);
+      
 
-        return materiasTodas;
+        return materiasNocursadas;
     }
 
     public void borrarInscripcionesMateriaAlumno(int idAlumno, int idMateria) {
