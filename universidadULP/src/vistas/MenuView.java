@@ -161,7 +161,6 @@ public class MenuView extends javax.swing.JFrame {
         jDEscritorioMenu.removeAll();
         jDEscritorioMenu.repaint();
         CargadeNotasView cdn = new CargadeNotasView(); 
-        
         cdn.setVisible(true);
         
         jDEscritorioMenu.add(cdn);
