@@ -5,7 +5,9 @@
  */
 package vistas;
 
+import AccesoADatos.InscripcionData;
 import AccesoADatos.MateriaData;
+import entidades.Alumno;
 import entidades.Materia;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo= new DefaultTableModel();
+    private MateriaData mdata = new MateriaData();
+    private InscripcionData idata = new InscripcionData();
     /**
      * Creates new form ListadoAlumnosPorMaterias
      */
@@ -52,6 +56,12 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Seleccione una materia :");
+
+        jCmateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCmateriaActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
 
@@ -108,6 +118,12 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
+        modelo.setRowCount(0);
+        
+        ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(jCmateria.getSelectedItem());
+    }//GEN-LAST:event_jCmateriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalir;
@@ -139,7 +155,9 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         for (Materia materia : materias) {
             jCmateria.addItem(materia.getNombre()+","+materia.getIdMateria());
         }
-}
+           
+        
+    }
         
 
 
