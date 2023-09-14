@@ -66,7 +66,7 @@ public class UniversidadULP {
            System.out.println("Año: "+m.getAnioMateria());
            
         */
-     
+     /*
         ArrayList<Alumno> alumnosEnMateria = (ArrayList<Alumno>) idata.obtenerAlumnosXMateria(4);
                 
         for (Alumno alumno : alumnosEnMateria) {
@@ -74,7 +74,8 @@ public class UniversidadULP {
             System.out.println(alumno.toString());
             
         }
-                
+   */
+     
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);
         //ad.eliminarAlumno(9);
