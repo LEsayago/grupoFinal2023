@@ -38,6 +38,7 @@ public class MenuView extends javax.swing.JFrame {
         jMinscripcion = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMConsultas = new javax.swing.JMenu();
+        jMAlumnoPorMateria = new javax.swing.JMenuItem();
         jMSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,6 +99,10 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMAdmin);
 
         jMConsultas.setText("Consultas");
+
+        jMAlumnoPorMateria.setText("Alumno por materia");
+        jMConsultas.add(jMAlumnoPorMateria);
+
         jMenuBar1.add(jMConsultas);
 
         jMSalir.setText("Salir");
@@ -224,6 +229,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDEscritorioMenu;
     private javax.swing.JMenu jMAdmin;
     private javax.swing.JMenu jMAlumno;
+    private javax.swing.JMenuItem jMAlumnoPorMateria;
     private javax.swing.JMenu jMConsultas;
     private javax.swing.JMenuItem jMFormuAlumno;
     private javax.swing.JMenuItem jMFormuMateria;
