@@ -143,31 +143,27 @@ public class InscripcionData {
     }
 
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno) {
-        
-     ArrayList<Materia> materiasNocursadas= new  ArrayList<>();
-        
-     String sql= "SELECT * FROM materia WHERE estado = 1 and  idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?) ";
-        
+
+        ArrayList<Materia> materiasNocursadas = new ArrayList<>();
+
+        String sql = "SELECT * FROM materia WHERE estado = 1 and  idMateria not in (SELECT idMateria FROM inscripcion WHERE idAlumno = ?) ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
-            ResultSet rs= ps.executeQuery();
-            
-            while (rs.next()) {      
-                
-                Materia materia = matdata.buscarMateria(rs.getInt("idMateria")); // genera objeto Materia
-                
-                materiasNocursadas.add(materia);// Aca agrego el objeto
-                
-            }
-            
-            
-        } catch (SQLException ex) {
-              JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
-        }
-        
+            ResultSet rs = ps.executeQuery();
 
-      
+            while (rs.next()) {
+
+                Materia materia = matdata.buscarMateria(rs.getInt("idMateria")); // genera objeto Materia
+
+                materiasNocursadas.add(materia);// Aca agrego el objeto
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion" + ex.getMessage());
+        }
 
         return materiasNocursadas;
     }
@@ -215,7 +211,8 @@ public class InscripcionData {
 
         ArrayList<Alumno> alumnos = new ArrayList<>();
 
-        String sql = "SELECT * FROM inscripcion WHERE idMateria= ?";
+        String sql = "SELECT a.idAlumno, dni, nombre , apellido , fechaDeNacimiento, estado "
+                + "FROM inscripcion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado=1";
 
         try {
 
@@ -230,12 +227,11 @@ public class InscripcionData {
                 alumnos.add(alumno);
 
             }
-            
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al ingresar a la tabla Inscripcion! " + ex.getMessage());
         }
-        
 
         return alumnos;
     }
