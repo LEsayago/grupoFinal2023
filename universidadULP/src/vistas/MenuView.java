@@ -16,7 +16,7 @@ public class MenuView extends javax.swing.JFrame {
      */
     public MenuView() {
         initComponents();
-        
+
     }
 
     /**
@@ -106,6 +106,11 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         jMAlumnoPorMateria.setText("Alumno por materia");
+        jMAlumnoPorMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAlumnoPorMateriaActionPerformed(evt);
+            }
+        });
         jMConsultas.add(jMAlumnoPorMateria);
 
         jMenuBar1.add(jMConsultas);
@@ -136,79 +141,93 @@ public class MenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMFormuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormuMateriaActionPerformed
-        
+
         // Se borra todo lo que contenga el escritorio en el momento
         jDEscritorioMenu.removeAll();
         // se redibuja
         jDEscritorioMenu.repaint();
-        
+
         // instancio la clase a la que quiero llamar
-        MateriaView materia = new  MateriaView();
-        
+        MateriaView materia = new MateriaView();
+
         // hago visible mi instancia
         materia.setVisible(true);
-       
+
         // se agrega al escritorio
         jDEscritorioMenu.add(materia);
-        
+
         // se mueve al frente
         jDEscritorioMenu.moveToFront(materia);
-        
-        
+
+
     }//GEN-LAST:event_jMFormuMateriaActionPerformed
 
     private void jMCargadenotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMCargadenotasActionPerformed
         jDEscritorioMenu.removeAll();
         jDEscritorioMenu.repaint();
-        CargadeNotasView cdn = new CargadeNotasView(); 
+        CargadeNotasView cdn = new CargadeNotasView();
         cdn.setVisible(true);
-        
+
         jDEscritorioMenu.add(cdn);
-        
-         jDEscritorioMenu.moveToFront(cdn);
-         
+
+        jDEscritorioMenu.moveToFront(cdn);
+
     }//GEN-LAST:event_jMCargadenotasActionPerformed
 
-    
-    
-    
+
     private void jMinscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMinscripcionActionPerformed
-       // Se borra todo lo que contenga el escritorio en el momento
+        // Se borra todo lo que contenga el escritorio en el momento
         jDEscritorioMenu.removeAll();
         // se redibuja
         jDEscritorioMenu.repaint();
-        
+
         // instancio la clase a la que quiero llamar
-        FormulariosDeInscripcionView inscripcion = new  FormulariosDeInscripcionView();
-        
+        FormulariosDeInscripcionView inscripcion = new FormulariosDeInscripcionView();
+
         // hago visible mi instancia
         inscripcion.setVisible(true);
-       
+
         // se agrega al escritorio
         jDEscritorioMenu.add(inscripcion);
-        
+
         // se mueve al frente
         jDEscritorioMenu.moveToFront(inscripcion);
-        
+
     }//GEN-LAST:event_jMinscripcionActionPerformed
 
     private void jMFormuAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormuAlumnoActionPerformed
-       jDEscritorioMenu.removeAll();
-       jDEscritorioMenu.repaint();
-       
-       FormularioAlumnoView formularioAlumnoView= new FormularioAlumnoView();
-       
-      formularioAlumnoView.setVisible(true);
-      
-      jDEscritorioMenu.add(formularioAlumnoView);
-      
-      jDEscritorioMenu.moveToFront(formularioAlumnoView);
-      
+        jDEscritorioMenu.removeAll();
+        jDEscritorioMenu.repaint();
+
+        FormularioAlumnoView formularioAlumnoView = new FormularioAlumnoView();
+
+        formularioAlumnoView.setVisible(true);
+
+        jDEscritorioMenu.add(formularioAlumnoView);
+
+        jDEscritorioMenu.moveToFront(formularioAlumnoView);
+
     }//GEN-LAST:event_jMFormuAlumnoActionPerformed
 
     private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMConsultasActionPerformed
+
+    private void jMAlumnoPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAlumnoPorMateriaActionPerformed
+
+        //llamar al escritorio
+        jDEscritorioMenu.removeAll();
+        //repintamos la vista
+        jDEscritorioMenu.repaint();
+
+        ListadoAlumnosPorMateriasView listadoAlumnosPorMateriasView = new ListadoAlumnosPorMateriasView();
+
+        listadoAlumnosPorMateriasView.setVisible(true);
+
+        jDEscritorioMenu.add(listadoAlumnosPorMateriasView);
+        jDEscritorioMenu.moveToFront(listadoAlumnosPorMateriasView);
+
+    }//GEN-LAST:event_jMAlumnoPorMateriaActionPerformed
 
     /**
      * @param args the command line arguments

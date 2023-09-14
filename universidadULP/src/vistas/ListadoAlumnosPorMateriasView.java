@@ -5,17 +5,23 @@
  */
 package vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author niqog
  */
 public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo;
     /**
      * Creates new form ListadoAlumnosPorMaterias
      */
     public ListadoAlumnosPorMateriasView() {
         initComponents();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        armarCabecera();
+       
     }
 
     /**
@@ -106,4 +112,20 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+  private void armarCabecera() {
+
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+
+        jTable1.setModel(modelo);
+
+    }
+
+
+
+
+
 }
