@@ -10,6 +10,7 @@ import java.time.Month;
 import javax.swing.JOptionPane;
 import AccesoADatos.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,14 +28,14 @@ public class UniversidadULP {
         MateriaData md = new MateriaData();
         InscripcionData idata = new InscripcionData();
 
-        Alumno alumno = ad.buscarAlumno(9);
+        //Alumno alumno = ad.buscarAlumno(9);
       //  JOptionPane.showMessageDialog(null, damian.toString());
         
-        Materia materia = md.buscarMateria(55);
+      //  Materia materia = md.buscarMateria(55);
 
       //   JOptionPane.showMessageDialog(null, programacion.toString());
         
-        Inscripcion insc = new Inscripcion(alumno, materia, 10);
+    //    Inscripcion insc = new Inscripcion(alumno, materia, 10);
        // idata.guardarInscripcion(insc);
    
       // idata.actualizarNota(8, 3, 7.0);
@@ -49,7 +50,7 @@ public class UniversidadULP {
             System.out.println("***************************************************");
         }
         */
-       for (Materia m:idata.obtenerMateriasCursadas(7)){
+     /*  for (Materia m:idata.obtenerMateriasCursadas(7)){
        
            Alumno alumno1= ad.buscarAlumno(7);
            System.out.println("Alumno: "+alumno1);
@@ -64,8 +65,15 @@ public class UniversidadULP {
            System.out.println("Materia: "+m.getNombre());
            System.out.println("Año: "+m.getAnioMateria());
            
-        
+        */
+     
+        ArrayList<Alumno> alumnosEnMateria = (ArrayList<Alumno>) idata.obtenerAlumnosXMateria(4);
                 
+        for (Alumno alumno : alumnosEnMateria) {
+            
+            System.out.println(alumno.toString());
+            
+        }
                 
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);
@@ -194,5 +202,4 @@ public class UniversidadULP {
         }
          */
     }
-}
 }

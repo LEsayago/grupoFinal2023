@@ -230,11 +230,12 @@ public class InscripcionData {
                 alumnos.add(alumno);
 
             }
+            
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error! " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al ingresar a la tabla Inscripcion! " + ex.getMessage());
         }
-        ;
+        
 
         return alumnos;
     }
