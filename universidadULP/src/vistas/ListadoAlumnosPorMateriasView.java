@@ -128,13 +128,14 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         
         //llenar la tabla con los datos de el array creado
         for(Alumno alumno: listadAlumuno){
+
          
            Object[] rowData = {alumno.getIdAlumno(),alumno.getDni(),alumno.getNombre(),alumno.getApellido()};
             modelo.addRow(rowData); 
-        }
+  
         
     }//GEN-LAST:event_jCmateriaActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalir;
