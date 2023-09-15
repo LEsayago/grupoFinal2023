@@ -121,17 +121,18 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
        // borramos las filas
         modelo.setRowCount(0);
+        
        //llenamos el array con todos los alumnos de esa materia
        Materia materia = (Materia) jCmateria.getSelectedItem();
         ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(materia.getIdMateria());
         
         //llenar la tabla con los datos de el array creado
         for(Alumno alumno: listadAlumuno){
-            modelo.addRow(Object[] rowData = {valor1, valor2, valor3};
-model.addRow(rowData);
-        
-        });
+         
+           Object[] rowData = {alumno.getIdAlumno(),alumno.getDni(),alumno.getNombre(),alumno.getApellido()};
+            modelo.addRow(rowData); 
         }
+        
     }//GEN-LAST:event_jCmateriaActionPerformed
 
 
@@ -168,7 +169,7 @@ model.addRow(rowData);
            
         
     }
-        
+
 
 
 }
