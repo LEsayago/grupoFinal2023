@@ -224,7 +224,8 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                 }*/
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Solo se pueden ingresar valores numéricos");
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             }
 
         }
