@@ -121,20 +121,23 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
        // borramos las filas
         modelo.setRowCount(0);
-        
-        // guardamos la seleccion del combo
-       Materia materia= (Materia) jCmateria.getSelectedItem();
-       
        //llenamos el array con todos los alumnos de esa materia
+       Materia materia = (Materia) jCmateria.getSelectedItem();
         ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(materia.getIdMateria());
         
         //llenar la tabla con los datos de el array creado
+        for(Alumno alumno: listadAlumuno){
+            modelo.addRow(Object[] rowData = {valor1, valor2, valor3};
+model.addRow(rowData);
+        
+        });
+        }
     }//GEN-LAST:event_jCmateriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonSalir;
-    private javax.swing.JComboBox<String> jCmateria;
+    private javax.swing.JComboBox<Materia> jCmateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -160,7 +163,7 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         
        
         for (Materia materia : materias) {
-            jCmateria.addItem(materia.getNombre()+","+materia.getIdMateria());
+            jCmateria.addItem(materia);
         }
            
         
