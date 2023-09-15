@@ -120,8 +120,8 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
     private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
         modelo.setRowCount(0);
-        
-        ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(jCmateria.getSelectedItem());
+       Materia materia= (Materia) jCmateria.getSelectedItem();
+        ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(materia.getIdMateria());
     }//GEN-LAST:event_jCmateriaActionPerformed
 
 
