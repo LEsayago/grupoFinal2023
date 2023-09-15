@@ -18,18 +18,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modelo= new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel();
     private MateriaData mdata = new MateriaData();
     private InscripcionData idata = new InscripcionData();
+
     /**
      * Creates new form ListadoAlumnosPorMaterias
      */
     public ListadoAlumnosPorMateriasView() {
         initComponents();
-       // modelo = (DefaultTableModel) jTable1.getModel();
+        // modelo = (DefaultTableModel) jTable1.getModel();
         armarCabecera();
         armarComboBox();
-       
+
     }
 
     /**
@@ -119,21 +120,19 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
-       // borramos las filas
+        // borramos las filas
         modelo.setRowCount(0);
-        
-       //llenamos el array con todos los alumnos de esa materia
-       Materia materia = (Materia) jCmateria.getSelectedItem();
-        ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(materia.getIdMateria());
-        
-        //llenar la tabla con los datos de el array creado
-        for(Alumno alumno: listadAlumuno){
 
-         
-           Object[] rowData = {alumno.getIdAlumno(),alumno.getDni(),alumno.getNombre(),alumno.getApellido()};
-            modelo.addRow(rowData); 
-  
-        
+        //llenamos el array con todos los alumnos de esa materia
+        Materia materia = (Materia) jCmateria.getSelectedItem();
+        ArrayList<Alumno> listadAlumuno = (ArrayList) idata.obtenerAlumnosXMateria(materia.getIdMateria());
+
+        //llenar la tabla con los datos de el array creado
+        for (Alumno alumno : listadAlumuno) {
+            Object[] rowData = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(),alumno.getNombre() };
+            modelo.addRow(rowData);
+
+
     }//GEN-LAST:event_jCmateriaActionPerformed
     }
 
@@ -146,7 +145,7 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-  private void armarCabecera() {
+    private void armarCabecera() {
 
         modelo.addColumn("ID");
         modelo.addColumn("DNI");
@@ -157,20 +156,15 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 
     }
 
+    private void armarComboBox() {
 
-    private void armarComboBox(){
+        MateriaData md = new MateriaData();
+        ArrayList<Materia> materias = (ArrayList) md.listarMaterias();
 
-        MateriaData md=new MateriaData();
-        ArrayList<Materia> materias =(ArrayList)md.listarMaterias();
-        
-       
         for (Materia materia : materias) {
             jCmateria.addItem(materia);
         }
-           
-        
+
     }
-
-
 
 }
