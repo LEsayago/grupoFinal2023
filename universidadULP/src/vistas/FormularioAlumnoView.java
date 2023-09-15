@@ -203,17 +203,21 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         Alumno al = new Alumno();
-        if (jTDocumento.getText() != "") {
+        if (!"".equals(jTDocumento.getText())) {
             try {
-                al = aData.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+                               
+               int a=Integer.parseInt(jTDocumento.getText());
+             //   JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
+                al = aData.buscarAlumnoPorDni(a);
                 jTApellido.setText(al.getApellido());
                 jTNombre.setText(al.getNombre());
                 jRBActivo.setSelected(al.isEstado());
                 LocalDate ld=al.getFechaNac();
                 Date fecha = (Date) Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());             
                 jDateChooser1.setDate(fecha);
+                        //setDate(fecha);
                 
-                JOptionPane.showMessageDialog(null, fecha);
+              //  JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
                 
                 /*if (fechaDesdeBaseDeDatos != null) {
                  dateChooser.setDate(fechaDesdeBaseDeDatos);

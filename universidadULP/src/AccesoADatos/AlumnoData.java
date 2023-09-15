@@ -117,7 +117,7 @@ public class AlumnoData {
 
     }
 
-    public Alumno buscarAlumnoPorDni(int dni) {
+    /*public Alumno buscarAlumnoPorDni(int dni) {
 
         String sql = "SELECT  idAlumno, apellido, nombre, fechaDeNacimiento, estado FROM alumno WHERE dni = ? AND estado=1";
 
@@ -129,7 +129,6 @@ public class AlumnoData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
@@ -150,7 +149,45 @@ public class AlumnoData {
         }
         return alumno;
 
+    }*/
+    public Alumno buscarAlumnoPorDni(int dni) {
+
+    String sql = "SELECT idAlumno, dni, apellido, nombre, fechaDeNacimiento, estado FROM alumno WHERE dni = ? AND estado = 1";
+
+    Alumno alumno = null;
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, dni);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            alumno = new Alumno();
+            alumno.setIdAlumno(rs.getInt("idAlumno"));
+            alumno.setDni(rs.getInt("dni"));
+            alumno.setApellido(rs.getString("apellido"));
+            alumno.setNombre(rs.getString("nombre"));
+            
+            // Obtener la fecha de nacimiento y convertirla a LocalDate
+            Date fechaNacimiento = rs.getDate("fechaDeNacimiento");
+            if (fechaNacimiento != null) {
+                alumno.setFechaNac(fechaNacimiento.toLocalDate());
+            }
+            
+            alumno.setEstado(rs.getBoolean("estado"));
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe alumno con ese DNI");
+        }
+
+        ps.close();
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
     }
+    return alumno;
+}
+
 
     public List<Alumno> listarAlumnos() {
 
