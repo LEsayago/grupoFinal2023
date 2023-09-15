@@ -119,9 +119,16 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCmateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCmateriaActionPerformed
+       // borramos las filas
         modelo.setRowCount(0);
+        
+        // guardamos la seleccion del combo
        Materia materia= (Materia) jCmateria.getSelectedItem();
+       
+       //llenamos el array con todos los alumnos de esa materia
         ArrayList <Alumno> listadAlumuno = (ArrayList)idata.obtenerAlumnosXMateria(materia.getIdMateria());
+        
+        //llenar la tabla con los datos de el array creado
     }//GEN-LAST:event_jCmateriaActionPerformed
 
 
