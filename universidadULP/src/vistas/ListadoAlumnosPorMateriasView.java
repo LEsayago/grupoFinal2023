@@ -131,7 +131,7 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
 model.addRow(rowData);
         
         });
-        }
+        
     }//GEN-LAST:event_jCmateriaActionPerformed
 
 
