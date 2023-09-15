@@ -5,11 +5,22 @@
  */
 package vistas;
 
+import AccesoADatos.AlumnoData;
+//import com.sun.java.util.jar.pack.Attribute.FormatException;
+import entidades.Alumno;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+
 /**
  *
  * @author Lucas E. Sayago
  */
 public class FormularioAlumnoView extends javax.swing.JInternalFrame {
+
+    private AlumnoData aData = new AlumnoData();
 
     /**
      * Creates new form FormularioAlumnoView
@@ -43,6 +54,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jBNuevo = new javax.swing.JButton();
         jBEliminar = new javax.swing.JButton();
         jBGuardar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
@@ -57,13 +69,28 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jLabel5.setText("Fecha de Nacimiento");
 
         jRBActivo.setText("Activo");
+        jRBActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBActivoActionPerformed(evt);
+            }
+        });
 
         jRBInactivo.setText("Inactivo");
+        jRBInactivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRBInactivoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("   Alumno");
 
         jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         jBNuevo.setText("Nuevo");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +130,9 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5)
                             .addComponent(jBNuevo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBEliminar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBEliminar)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -142,13 +171,15 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                     .addComponent(jRBActivo)
                     .addComponent(jRBInactivo))
                 .addGap(24, 24, 24)
-                .addComponent(jLabel5)
-                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo)
                     .addComponent(jBEliminar)
                     .addComponent(jBGuardar))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,12 +193,48 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBGuardarActionPerformed
 
+    private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
+        jRBInactivo.setSelected(false);
+    }//GEN-LAST:event_jRBActivoActionPerformed
+
+    private void jRBInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBInactivoActionPerformed
+        jRBActivo.setSelected(false);
+    }//GEN-LAST:event_jRBInactivoActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+        Alumno al = new Alumno();
+        if (jTDocumento.getText() != "") {
+            try {
+                al = aData.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+                jTApellido.setText(al.getApellido());
+                jTNombre.setText(al.getNombre());
+                jRBActivo.setSelected(al.isEstado());
+                LocalDate ld=al.getFechaNac();
+                Date fecha = (Date) Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());             
+                jDateChooser1.setDate(fecha);
+                
+                JOptionPane.showMessageDialog(null, fecha);
+                
+                /*if (fechaDesdeBaseDeDatos != null) {
+                 dateChooser.setDate(fechaDesdeBaseDeDatos);
+                }*/
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Solo se pueden ingresar valores numéricos");
+            }
+
+        }
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBNuevo;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
