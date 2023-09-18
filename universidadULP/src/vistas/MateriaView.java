@@ -5,15 +5,18 @@
  */
 package vistas;
 
+import AccesoADatos.MateriaData;
+import entidades.Materia;
+
 /**
  *
  * @author Lucas E. Sayago
  */
 public class MateriaView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form MateriaView
-     */
+    private MateriaData mData = new MateriaData();
+            
+            
     public MateriaView() {
         initComponents();
        jBNuevo.setEnabled(false);
@@ -35,7 +38,6 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jRBActivo = new javax.swing.JRadioButton();
-        jRBInactivo = new javax.swing.JRadioButton();
         jTAnio = new javax.swing.JTextField();
         jTNombre = new javax.swing.JTextField();
         jTCodigo = new javax.swing.JTextField();
@@ -61,13 +63,6 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jRBActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBActivoActionPerformed(evt);
-            }
-        });
-
-        jRBInactivo.setText("Inactivo");
-        jRBInactivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBInactivoActionPerformed(evt);
             }
         });
 
@@ -124,8 +119,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                                     .addGap(20, 20, 20))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jRBActivo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jRBInactivo))))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
@@ -160,8 +154,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jRBActivo)
-                    .addComponent(jRBInactivo))
+                    .addComponent(jRBActivo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBNuevo)
@@ -182,24 +175,25 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTNombreActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        
-        // segun el codigo, buscar en la D B;
-        
-        
+
+        try{
+            if (jTCodigo!=null){
+                Materia mate =mData.buscarMateria(Integer.parseInt(jTCodigo.getText()));
+                jTNombre.setText(mate.getNombre());
+                jTAnio.setText(mate.getAnioMateria()+"");
+                jRBActivo.setSelected(mate.isActivo());
+            }
+        }catch(Exception ex){
+            
+        }
         
         
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
- 
-        jRBInactivo.setSelected(false);
+
     
     }//GEN-LAST:event_jRBActivoActionPerformed
-
-    private void jRBInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBInactivoActionPerformed
-
-        jRBActivo.setSelected(false);
-    }//GEN-LAST:event_jRBInactivoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -213,7 +207,6 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRBActivo;
-    private javax.swing.JRadioButton jRBInactivo;
     private javax.swing.JTextField jTAnio;
     private javax.swing.JTextField jTCodigo;
     private javax.swing.JTextField jTNombre;

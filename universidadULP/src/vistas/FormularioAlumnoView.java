@@ -50,7 +50,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jTApellido = new javax.swing.JTextField();
         jTNombre = new javax.swing.JTextField();
         jRBActivo = new javax.swing.JRadioButton();
-        jRBInactivo = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jBBuscar = new javax.swing.JButton();
         jBNuevo = new javax.swing.JButton();
@@ -74,13 +73,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jRBActivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBActivoActionPerformed(evt);
-            }
-        });
-
-        jRBInactivo.setText("Inactivo");
-        jRBInactivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBInactivoActionPerformed(evt);
             }
         });
 
@@ -131,8 +123,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
                                 .addComponent(jRBActivo)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRBInactivo))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -141,7 +132,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTApellido)
                                     .addComponent(jTDocumento)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBBuscar)
@@ -153,9 +144,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                             .addComponent(jBNuevo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBEliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jBEliminar)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(53, 53, 53))
         );
@@ -179,8 +168,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jRBActivo)
-                    .addComponent(jRBInactivo))
+                    .addComponent(jRBActivo))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
@@ -201,7 +189,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         try {
-
             int dni = Integer.parseInt(jTDocumento.getText());
             String ape = jTApellido.getText();
             String nom = jTNombre.getText();
@@ -234,12 +221,8 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
-        jRBInactivo.setSelected(false);
-    }//GEN-LAST:event_jRBActivoActionPerformed
 
-    private void jRBInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBInactivoActionPerformed
-        jRBActivo.setSelected(false);
-    }//GEN-LAST:event_jRBInactivoActionPerformed
+    }//GEN-LAST:event_jRBActivoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
 
@@ -339,7 +322,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JRadioButton jRBActivo;
-    private javax.swing.JRadioButton jRBInactivo;
     private javax.swing.JTextField jTApellido;
     private javax.swing.JTextField jTDocumento;
     private javax.swing.JTextField jTNombre;
