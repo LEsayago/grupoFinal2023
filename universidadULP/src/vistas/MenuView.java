@@ -47,11 +47,11 @@ public class MenuView extends javax.swing.JFrame {
         jDEscritorioMenu.setLayout(jDEscritorioMenuLayout);
         jDEscritorioMenuLayout.setHorizontalGroup(
             jDEscritorioMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 1102, Short.MAX_VALUE)
         );
         jDEscritorioMenuLayout.setVerticalGroup(
             jDEscritorioMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 709, Short.MAX_VALUE)
         );
 
         jMAlumno.setText("Alumno");

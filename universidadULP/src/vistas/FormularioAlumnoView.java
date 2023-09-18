@@ -205,27 +205,28 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         Alumno al = new Alumno();
         if (!"".equals(jTDocumento.getText())) {
             try {
-                               
-               int a=Integer.parseInt(jTDocumento.getText());
-             //   JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
+
+                int a = Integer.parseInt(jTDocumento.getText());
+                //   JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
                 al = aData.buscarAlumnoPorDni(a);
                 jTApellido.setText(al.getApellido());
                 jTNombre.setText(al.getNombre());
                 jRBActivo.setSelected(al.isEstado());
-                LocalDate ld=al.getFechaNac();
-                Date fecha = (Date) Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());             
-                jDateChooser1.setDate(fecha);
-                        //setDate(fecha);
-                
-              //  JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
-                
+                //LocalDate ld = al.getFechaNac();
+                //Date fecha = (Date) Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());             
+
+                //setDate(fecha);
+                java.util.Date fechaActual = new java.util.Date(System.currentTimeMillis());
+                java.sql.Date fechaSql = java.sql.Date.valueOf(fechaActual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                jDateChooser1.setDate(fechaSql);
+                //  JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
+
                 /*if (fechaDesdeBaseDeDatos != null) {
                  dateChooser.setDate(fechaDesdeBaseDeDatos);
                 }*/
-
             } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             }
 
         }
