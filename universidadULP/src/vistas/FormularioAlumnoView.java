@@ -227,6 +227,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+                
             }
 
         }
