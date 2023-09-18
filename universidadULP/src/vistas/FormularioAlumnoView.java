@@ -201,20 +201,20 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         try {
-            
+
             int dni = Integer.parseInt(jTDocumento.getText());
             String ape = jTApellido.getText();
             String nom = jTNombre.getText();
             boolean estado = jRBActivo.isSelected();
             LocalDate fdn = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    
+
             Alumno alum = new Alumno(dni, ape, nom, fdn, estado);
             aData.guardarAlumno(alum);
-            
-        }catch(Exception ex){
-           JOptionPane.showMessageDialog(null, "El alumno no se agregó. Gil. " + ex.getMessage());
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "El alumno no se agregó. Gil. " + ex.getMessage());
         }
-        
+
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -242,7 +242,30 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBInactivoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+
         Alumno al = new Alumno();
+
+        try {
+            if (!"".equals(jTDocumento.getText())) {
+
+                int a = Integer.parseInt(jTDocumento.getText());
+                al = aData.buscarAlumnoPorDni(a);
+
+                jTApellido.setText(al.getApellido());
+                jTNombre.setText(al.getNombre());
+                jRBActivo.setSelected(al.isEstado());
+
+                LocalDate fechaNacimiento = al.getFechaNac();
+                java.util.Date fechaNacimientoAsDate = java.util.Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jDateChooser1.setDate(fechaNacimientoAsDate);
+            }
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, " El alumno no existe: " + ex.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+
+        /*Alumno al = new Alumno();
         
          try {
         if (!"".equals(jTDocumento.getText())) {
@@ -258,32 +281,37 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                 //Date fecha = (Date) Date.from(ld.atStartOfDay(ZoneId.systemDefault()).toInstant());             
 
                 //setDate(fecha);
-                java.util.Date fechaActual = new java.util.Date(System.currentTimeMillis());
-                java.sql.Date fechaSql = java.sql.Date.valueOf(fechaActual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                jDateChooser1.setDate(fechaSql);
+                //java.util.Date fechaActual = new java.util.Date(System.currentTimeMillis());
+                //java.sql.Date fechaSql = java.sql.Date.valueOf(fechaActual.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                //jDateChooser1.setDate(fechaSql);
+                
+                LocalDate fechaNacimiento = al.getFechaNac();
+                java.util.Date fechaNacimientoAsDate = java.util.Date.from(fechaNacimiento.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                jDateChooser1.setDate(fechaNacimientoAsDate);
+                
                 //  JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
 
                 /*if (fechaDesdeBaseDeDatos != null) {
                  dateChooser.setDate(fechaDesdeBaseDeDatos);
-                }*/
+                }
             }
            } catch (NullPointerException ex){
             JOptionPane.showMessageDialog(null, " El alumno no existe: " + ex.getMessage());
         } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-        } 
+        } */
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        
+
         try {
             jBBuscarActionPerformed(evt);
             int dni = Integer.parseInt(jTDocumento.getText());
-        
+
             Alumno alumno = aData.buscarAlumnoPorDni(dni);
-                //JOptionPane.showMessageDialog(this,alumno.getIdAlumno());
+            //JOptionPane.showMessageDialog(this,alumno.getIdAlumno());
             if (alumno != null && alumno.isEstado()) {
-                
+
                 JOptionPane.showMessageDialog(this, alumno.getIdAlumno());
                 aData.eliminarAlumno(alumno.getIdAlumno());
                 JOptionPane.showMessageDialog(this, "Alumno eliminado con exito");
@@ -293,9 +321,8 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Verificar los campos ingresados en DNI");
         }
-    
 
-        
+
     }//GEN-LAST:event_jBEliminarActionPerformed
 
 
