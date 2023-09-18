@@ -147,18 +147,24 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRBActivoActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jRBActivoKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTAnio">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTAnioKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTNombre">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTNombreActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTNombreKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTCodigo">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTCodigoActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTCodigoKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBBuscar">

@@ -7,6 +7,7 @@ package vistas;
 
 import AccesoADatos.MateriaData;
 import entidades.Materia;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,16 +66,37 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 jRBActivoActionPerformed(evt);
             }
         });
+        jRBActivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jRBActivoKeyReleased(evt);
+            }
+        });
+
+        jTAnio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTAnioKeyReleased(evt);
+            }
+        });
 
         jTNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTNombreActionPerformed(evt);
             }
         });
+        jTNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTNombreKeyReleased(evt);
+            }
+        });
 
         jTCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTCodigoActionPerformed(evt);
+            }
+        });
+        jTCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCodigoKeyReleased(evt);
             }
         });
 
@@ -182,6 +204,22 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 jTNombre.setText(mate.getNombre());
                 jTAnio.setText(mate.getAnioMateria()+"");
                 jRBActivo.setSelected(mate.isActivo());
+                
+                
+                /*
+                if(mate!=null){
+                    
+                jTNombre.setText(mate.getNombre());
+                jTAnio.setText(mate.getAnioMateria()+"");
+                jRBActivo.setSelected(mate.isActivo());
+                }else{
+                    jBNuevo.setEnabled(true);
+                }
+                */
+                
+                }else{
+                JOptionPane.showMessageDialog(null,"No existe materia con ese Código.");
+                
             }
         }catch(Exception ex){
             
@@ -189,12 +227,29 @@ public class MateriaView extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_jBBuscarActionPerformed
-
+        
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
 
     
     }//GEN-LAST:event_jRBActivoActionPerformed
 
+    private void jTCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoKeyReleased
+        HabilitarBotonNuevo();
+    }//GEN-LAST:event_jTCodigoKeyReleased
+
+    private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
+        HabilitarBotonNuevo();
+    }//GEN-LAST:event_jTNombreKeyReleased
+
+    private void jTAnioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAnioKeyReleased
+        HabilitarBotonNuevo();
+    }//GEN-LAST:event_jTAnioKeyReleased
+
+    private void jRBActivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBActivoKeyReleased
+        HabilitarBotonNuevo();
+    }//GEN-LAST:event_jRBActivoKeyReleased
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
@@ -211,4 +266,19 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTCodigo;
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
+
+private void HabilitarBotonNuevo(){
+    if(jTCodigo!=null && jTNombre!=null && jTAnio!=null && jRBActivo!=null){
+        jBNuevo.setEnabled(true);
+        
+        
+        
+    }
 }
+
+
+
+
+
+}
+
