@@ -27,7 +27,10 @@ public class UniversidadULP {
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
         InscripcionData idata = new InscripcionData();
-
+        
+        
+       
+        
         //Alumno alumno = ad.buscarAlumno(9);
       //  JOptionPane.showMessageDialog(null, damian.toString());
         

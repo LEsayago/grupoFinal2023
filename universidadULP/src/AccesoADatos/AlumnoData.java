@@ -112,7 +112,13 @@ public class AlumnoData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
-        }
+        }catch (NullPointerException ex){
+        JOptionPane.showMessageDialog(null," No se encontró el alumno. 4");
+        } catch (Exception ex){
+        JOptionPane.showMessageDialog(null," No se encontró el alumno. (3) ");
+    }
+        
+        
         return alumno;
 
     }
@@ -184,7 +190,13 @@ public class AlumnoData {
 
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al conectarse a la Base de Datos");
+    } catch (NullPointerException ex){
+        JOptionPane.showMessageDialog(null," No se encontró el alumno. ");
+    } catch (Exception ex){
+        JOptionPane.showMessageDialog(null," No se encontró el alumno. (2) ");
     }
+            
+            
     return alumno;
 }
 

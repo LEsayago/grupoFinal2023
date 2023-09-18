@@ -11,6 +11,8 @@ import entidades.Alumno;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 
@@ -100,6 +102,11 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,8 +145,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jBBuscar)
-                            .addComponent(jBGuardar))
-                        .addContainerGap(53, Short.MAX_VALUE))
+                            .addComponent(jBGuardar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -147,8 +153,11 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                             .addComponent(jBNuevo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBEliminar)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,18 +193,44 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                     .addComponent(jBNuevo)
                     .addComponent(jBEliminar)
                     .addComponent(jBGuardar))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        // TODO add your handling code here:
+        try {
+            
+            int dni = Integer.parseInt(jTDocumento.getText());
+            String ape = jTApellido.getText();
+            String nom = jTNombre.getText();
+            boolean estado = jRBActivo.isSelected();
+            LocalDate fdn = jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    
+            Alumno alum = new Alumno(dni, ape, nom, fdn, estado);
+            aData.guardarAlumno(alum);
+            
+        }catch(Exception ex){
+           JOptionPane.showMessageDialog(null, "El alumno no se agregó. Gil. " + ex.getMessage());
+        }
+        
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Alumno alum = aData.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
+
+            alum.setApellido(jTApellido.getText());
+            alum.setNombre(jTNombre.getText());
+            alum.setEstado(jRBActivo.isSelected());
+            alum.setFechaNac(jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+            aData.modificarAlumno(alum);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "El alumno no se modificó. Gil. " + ex.getMessage());
+        }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
@@ -208,8 +243,10 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         Alumno al = new Alumno();
+        
+         try {
         if (!"".equals(jTDocumento.getText())) {
-            try {
+           
 
                 int a = Integer.parseInt(jTDocumento.getText());
                 //   JOptionPane.showMessageDialog(null, Integer.parseInt(jTDocumento.getText()));
@@ -229,16 +266,37 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                 /*if (fechaDesdeBaseDeDatos != null) {
                  dateChooser.setDate(fechaDesdeBaseDeDatos);
                 }*/
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-                
             }
-
-        }
-
-// TODO add your handling code here:
+           } catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, " El alumno no existe: " + ex.getMessage());
+        } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        } 
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        
+        try {
+            jBBuscarActionPerformed(evt);
+            int dni = Integer.parseInt(jTDocumento.getText());
+        
+            Alumno alumno = aData.buscarAlumnoPorDni(dni);
+                //JOptionPane.showMessageDialog(this,alumno.getIdAlumno());
+            if (alumno != null && alumno.isEstado()) {
+                
+                JOptionPane.showMessageDialog(this, alumno.getIdAlumno());
+                aData.eliminarAlumno(alumno.getIdAlumno());
+                JOptionPane.showMessageDialog(this, "Alumno eliminado con exito");
+            } else {
+                JOptionPane.showMessageDialog(this, "no hay alumno a eliminar con esos datos");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Verificar los campos ingresados en DNI");
+        }
+    
+
+        
+    }//GEN-LAST:event_jBEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
