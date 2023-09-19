@@ -32,6 +32,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     private final AlumnoData aData = new AlumnoData();
     private DefaultTableModel modelo;
     private ArrayList<Materia> materias = new ArrayList<>();
+    private ArrayList<Alumno> alumnos = new ArrayList<>();
 
     /**
      * Creates new form FormulariosDeTareasView
@@ -191,6 +192,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
         materias = (ArrayList<Materia>) iData.obtenerMateriasNoCursadas(alum.getIdAlumno());
 
+        llenarTabla(materias);
 
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
@@ -207,7 +209,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jCAlumnos;
+    private javax.swing.JComboBox<Alumno> jCAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -230,7 +232,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }
 
     private void armarCombox() {
-
+/*
         try {
             //miConexion conexion = new miConexion("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
 
@@ -255,6 +257,14 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, " error ");
         }
 
+       */
+
+       alumnos = (ArrayList<Alumno>) aData.listarAlumnos();
+       
+        for (Alumno alumn : alumnos) {
+            jCAlumnos.addItem(alumn);
+            
+        }
     }
 
     private void limpiarTabla() {
