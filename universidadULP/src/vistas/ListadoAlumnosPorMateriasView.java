@@ -125,7 +125,6 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
             Object[] rowData = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(),alumno.getNombre() };
             modelo.addRow(rowData);
 
-
     }//GEN-LAST:event_jCmateriaActionPerformed
     }
 

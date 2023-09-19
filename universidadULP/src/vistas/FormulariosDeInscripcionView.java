@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import AccesoADatos.AlumnoData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,6 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import AccesoADatos.Conexion;
+import AccesoADatos.InscripcionData;
+import AccesoADatos.MateriaData;
+import entidades.Alumno;
+import entidades.Materia;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,12 +28,16 @@ import AccesoADatos.Conexion;
  */
 public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel();
+    private final InscripcionData iData = new InscripcionData();
+    private final AlumnoData aData = new AlumnoData();
+    private DefaultTableModel modelo;
+    private ArrayList<Materia> materias = new ArrayList<>();
 
     /**
      * Creates new form FormulariosDeTareasView
      */
     public FormulariosDeInscripcionView() {
+        this.modelo = new DefaultTableModel();
         initComponents();
         armarCabecera();
         armarCombox();
@@ -50,7 +61,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         jRBmateriasInscrptias = new javax.swing.JRadioButton();
         jRBmateriasnoinscriptas = new javax.swing.JRadioButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jTablaDeMaterias = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -96,7 +107,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaDeMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -107,7 +118,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable);
+        jScrollPane2.setViewportView(jTablaDeMaterias);
 
         jButton1.setText("Inscribir");
 
@@ -175,7 +186,12 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBmateriasnoinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasnoinscriptasActionPerformed
+        limpiarTabla();
         jRBmateriasInscrptias.setSelected(false);
+        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
+        materias = (ArrayList<Materia>) iData.obtenerMateriasNoCursadas(alum.getIdAlumno());
+
+
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
@@ -199,7 +215,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRBmateriasnoinscriptas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
+    private javax.swing.JTable jTablaDeMaterias;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
@@ -209,7 +225,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
 
-        jTable.setModel(modelo);
+        jTablaDeMaterias.setModel(modelo);
 
     }
 
@@ -231,13 +247,27 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
                 jCAlumnos.addItem(resultado.getInt("dni") + ", " + resultado.getString("apellido") + ", " + resultado.getString("nombre"));
 
-                
             }
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(FormulariosDeInscripcionView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, " error ");
         } catch (SQLException ex) {
-            Logger.getLogger(FormulariosDeInscripcionView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, " error ");
+        }
+
+    }
+
+    private void limpiarTabla() {
+
+        modelo.setRowCount(0);
+    }
+
+    private void llenarTabla(ArrayList<Materia> materias) {
+
+        for (Materia xmateria : materias) {
+            Object[] rowData = {xmateria.getIdMateria(), xmateria.getNombre(), xmateria.getAnioMateria()};
+            modelo.addRow(rowData);
+
         }
 
     }
