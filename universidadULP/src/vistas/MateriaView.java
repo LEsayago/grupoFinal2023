@@ -16,12 +16,11 @@ import javax.swing.JOptionPane;
 public class MateriaView extends javax.swing.JInternalFrame {
 
     private MateriaData mData = new MateriaData();
-            
-            
+
     public MateriaView() {
         initComponents();
-       jBNuevo.setEnabled(false);
-       jBEliminar.setEnabled(false);
+        jBNuevo.setEnabled(false);
+        jBEliminar.setEnabled(false);
     }
 
     /**
@@ -198,14 +197,13 @@ public class MateriaView extends javax.swing.JInternalFrame {
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
 
-        try{
-            if (jTCodigo!=null){
-                Materia mate =mData.buscarMateria(Integer.parseInt(jTCodigo.getText()));
+        try {
+            if (jTCodigo != null) {
+                Materia mate = mData.buscarMateria(Integer.parseInt(jTCodigo.getText()));
                 jTNombre.setText(mate.getNombre());
-                jTAnio.setText(mate.getAnioMateria()+"");
+                jTAnio.setText(mate.getAnioMateria() + "");
                 jRBActivo.setSelected(mate.isActivo());
-                
-                
+
                 /*
                 if(mate!=null){
                     
@@ -215,22 +213,21 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 }else{
                     jBNuevo.setEnabled(true);
                 }
-                */
-                
-                }else{
-                JOptionPane.showMessageDialog(null,"No existe materia con ese Código.");
-                
+                 */
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe materia con ese Código.");
+
             }
-        }catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jBBuscarActionPerformed
-        
+
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
 
-    
+
     }//GEN-LAST:event_jRBActivoActionPerformed
 
     private void jTCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoKeyReleased
@@ -248,8 +245,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private void jRBActivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBActivoKeyReleased
         HabilitarBotonNuevo();
     }//GEN-LAST:event_jRBActivoKeyReleased
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
@@ -267,23 +263,19 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
 
-private void HabilitarBotonNuevo(){
-    if(jTCodigo!=null && jTNombre!=null && jTAnio!=null && jRBActivo!=null ){
-        
-        if(mData.buscarMateria(Integer.parseInt(jTCodigo.getText()))!=null){
-        
-            jBNuevo.setEnabled(true);
-        }else{
-            jBEliminar.setEnabled(true);
+    private void HabilitarBotonNuevo() {
+        if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
+
+            if (mData.buscarMateria(Integer.parseInt(jTCodigo.getText())) == null) {
+
+                jBNuevo.setEnabled(true);
+                jBEliminar.setEnabled(false);
+            } else {
+                jBEliminar.setEnabled(true);
+                jBNuevo.setEnabled(false);
+            }
+
         }
-        
-        
     }
-}
-
-
-
-
 
 }
-
