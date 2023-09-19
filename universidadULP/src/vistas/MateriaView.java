@@ -124,6 +124,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
         });
 
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,7 +240,6 @@ public class MateriaView extends javax.swing.JInternalFrame {
 
         }
         HabilitarBotonNuevo();
-
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
@@ -284,7 +288,19 @@ public class MateriaView extends javax.swing.JInternalFrame {
 //           JOptionPane.showMessageDialog(null, "Error de consulta");
 //        }
     }//GEN-LAST:event_jBNuevoActionPerformed
-}
+    }
+    
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+         try{
+              Materia materia = new Materia(Integer.parseInt(jTCodigo.getText()), jTNombre.getText(), Integer.parseInt(jTAnio.getText()), jRBActivo.isSelected());
+            mData.modificarMateria(materia);
+            vaciarCampos();
+             
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
+    }    
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
