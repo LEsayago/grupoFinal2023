@@ -268,9 +268,14 @@ public class MateriaView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 private void HabilitarBotonNuevo(){
-    if(jTCodigo!=null && jTNombre!=null && jTAnio!=null && jRBActivo!=null){
-        jBNuevo.setEnabled(true);
+    if(jTCodigo!=null && jTNombre!=null && jTAnio!=null && jRBActivo!=null ){
         
+        if(mData.buscarMateria(Integer.parseInt(jTCodigo.getText()))!=null){
+        
+            jBNuevo.setEnabled(true);
+        }else{
+            jBEliminar.setEnabled(true);
+        }
         
         
     }
