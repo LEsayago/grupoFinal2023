@@ -59,14 +59,6 @@ public class Materia {
         this.activo = activo;
     }
 
-    public int getAño() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getidMateria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public String toString() {
         return nombre+ "," +idMateria;

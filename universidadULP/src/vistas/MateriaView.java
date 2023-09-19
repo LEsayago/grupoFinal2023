@@ -7,6 +7,9 @@ package vistas;
 
 import AccesoADatos.MateriaData;
 import entidades.Materia;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -107,6 +110,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
         });
 
         jBNuevo.setText("Nuevo");
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +272,19 @@ public class MateriaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        try{
+            Materia materia = new Materia(Integer.parseInt(jTCodigo.getText()), jTNombre.getText(), Integer.parseInt(jTAnio.getText()), jRBActivo.isSelected());
+            mData.guardarMateria(materia);
+            vaciarCampos();
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
+
+//        } catch (SQLException ex) {
+//           JOptionPane.showMessageDialog(null, "Error de consulta");
+//        }
+    }//GEN-LAST:event_jBNuevoActionPerformed
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
@@ -284,7 +305,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private void HabilitarBotonNuevo() {
         if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
 
-            if (mData.buscarMateria(Integer.parseInt(jTCodigo.getText())) == null) {
+            //if (mData.buscarMateria(Integer.parseInt(jTCodigo.getText())) == null) {
 
                 jBNuevo.setEnabled(true);
                 jBEliminar.setEnabled(false);
@@ -293,7 +314,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 jBNuevo.setEnabled(false);
             }
 
-        }
+        
     }
 
     private void vaciarCampos() {

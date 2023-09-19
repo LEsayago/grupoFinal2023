@@ -29,7 +29,7 @@ public class UniversidadULP {
         InscripcionData idata = new InscripcionData();
         
         
-       
+     //  md.guardarMateria(new Materia("mm", 2021, true));
         
         //Alumno alumno = ad.buscarAlumno(9);
       //  JOptionPane.showMessageDialog(null, damian.toString());

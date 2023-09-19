@@ -20,16 +20,16 @@ public class MateriaData {
         con = Conexion.getConexion();
     }
 
-    public void guardarMateria(Materia materia) throws SQLException{
+    public void guardarMateria(Materia materia) {
         
-        String sql = "INSERT INTO materia(idMateria, nombre, año, estado) "
-                    + "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO materia( idMateria, nombre, año, estado) "
+                    + "VALUES ( ?, ?, ?, ?)";
         
          try{
                  PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-                 ps.setInt(1, materia.getidMateria());
+                 ps.setInt(1, materia.getIdMateria());
                  ps.setString(2, materia.getNombre());
-                 ps.setInt(3, materia.getAño());
+                 ps.setInt(3, materia.getAnioMateria());
                  ps.setBoolean(4, materia.isActivo());
                  ps.executeUpdate();
                  
@@ -45,8 +45,8 @@ public class MateriaData {
          }catch (SQLException ex) {
              JOptionPane.showMessageDialog(null,"Error al acceder a la tabla materia");
          }
-    
     }
+    
             
     public void modificarMateria(Materia materia){
         
