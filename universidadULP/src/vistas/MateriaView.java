@@ -109,6 +109,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jBNuevo.setText("Nuevo");
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setText("Guardar");
 
@@ -196,7 +201,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTNombreActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-
+        vaciarCampos();
         try {
             if (jTCodigo != null) {
                 Materia mate = mData.buscarMateria(Integer.parseInt(jTCodigo.getText()));
@@ -221,7 +226,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
 
         }
-
+        HabilitarBotonNuevo();
 
     }//GEN-LAST:event_jBBuscarActionPerformed
 
@@ -231,7 +236,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBActivoActionPerformed
 
     private void jTCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoKeyReleased
-        HabilitarBotonNuevo();
+        // HabilitarBotonNuevo();
     }//GEN-LAST:event_jTCodigoKeyReleased
 
     private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
@@ -245,6 +250,19 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private void jRBActivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBActivoKeyReleased
         HabilitarBotonNuevo();
     }//GEN-LAST:event_jRBActivoKeyReleased
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+
+        vaciarCampos();
+        try {
+            if (!"".equals(jTCodigo.getText())) {
+                mData.eliminarMateria(Integer.parseInt(jTCodigo.getText()));
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
+
+        }
+    }//GEN-LAST:event_jBEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -270,12 +288,18 @@ public class MateriaView extends javax.swing.JInternalFrame {
 
                 jBNuevo.setEnabled(true);
                 jBEliminar.setEnabled(false);
-            } else {
+            } else if(jRBActivo.isSelected()){
                 jBEliminar.setEnabled(true);
                 jBNuevo.setEnabled(false);
             }
 
         }
+    }
+
+    private void vaciarCampos() {
+        jTAnio.setText("");
+        jTNombre.setText("");
+        jRBActivo.setSelected(false);
     }
 
 }
