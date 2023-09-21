@@ -5,6 +5,13 @@
  */
 package vistas;
 
+import AccesoADatos.AlumnoData;
+import AccesoADatos.InscripcionData;
+import AccesoADatos.MateriaData;
+import entidades.Alumno;
+import entidades.Inscripcion;
+import entidades.Materia;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,20 +20,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CargadeNotasView extends javax.swing.JInternalFrame {
 
-    
     private DefaultTableModel modelo;
-    
-    
+    private final InscripcionData iData = new InscripcionData();
+    private final AlumnoData aData = new AlumnoData();
+    private final MateriaData mData = new MateriaData();
+    private ArrayList<Materia> materias = new ArrayList<>();
+    private ArrayList<Alumno> alumnos = new ArrayList<>();
+    private ArrayList<Inscripcion> inscripciones = new ArrayList<>();
+
     /**
      * Creates new form CargadeNotas
      */
     public CargadeNotasView() {
+        this.modelo = new DefaultTableModel();
         initComponents();
-        
-        
-        modelo = (DefaultTableModel)jTabla.getModel();
         armarCabecera();
-        
+        armarCombox();
+
     }
 
     /**
@@ -43,7 +53,7 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCAlumnos = new javax.swing.JComboBox<>();
         botonSalir = new javax.swing.JButton();
         botonGuardar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -71,9 +81,9 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setText("Carga de Notas");
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCAlumnosActionPerformed(evt);
             }
         });
 
@@ -128,7 +138,7 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,7 +148,7 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
@@ -162,23 +172,35 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
+        limpiarTabla();
+        Alumno alumn = (Alumno) jCAlumnos.getSelectedItem();
+        inscripciones = (ArrayList<Inscripcion>) iData.obtenerInscripcionesPorAlumno(alumn.getIdAlumno());
+        llenarTabla(inscripciones);
+    }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        // TODO add your handling code here:
+        int seleccionDeFila = jTabla.getSelectedRow();
+        Alumno alumn = (Alumno) jCAlumnos.getSelectedItem();
+
+        if (seleccionDeFila > -1) {
+
+            int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
+            double nota = Double.parseDouble(modelo.getValueAt(seleccionDeFila, 2).toString());
+
+            iData.actualizarNota(alumn.getIdAlumno(), idMateria, nota);
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Alumno> jCAlumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -187,23 +209,43 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTabla;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
- 
-    private void armarCabecera(){
+
+    private void armarCabecera() {
+
         modelo.addColumn(" Código ");
         modelo.addColumn(" Nombre ");
         modelo.addColumn(" Nota ");
-        
+        modelo.addColumn("alumno");
+        jTabla.getColumnModel().getColumn(3).setPreferredWidth(0);
+        jTabla.getColumnModel().getColumn(3).setMinWidth(0);
+        jTabla.getColumnModel().getColumn(3).setMaxWidth(0);
         jTabla.setModel(modelo);
-        
-        
+
     }
 
+    private void llenarTabla(ArrayList<Inscripcion> inscr) {
 
-} 
+        for (Inscripcion xInscripcion : inscr) {
+            Object[] rowData = {xInscripcion.getMateria().getIdMateria(), xInscripcion.getMateria().getNombre(), xInscripcion.getNota(), xInscripcion};
+            modelo.addRow(rowData);
 
+        }
 
+    }
 
+    private void limpiarTabla() {
 
+        modelo.setRowCount(0);
+    }
 
+    private void armarCombox() {
 
+        alumnos = (ArrayList<Alumno>) aData.listarAlumnos();
 
+        for (Alumno alumn : alumnos) {
+            jCAlumnos.addItem(alumn);
+
+        }
+    }
+
+}
