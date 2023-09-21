@@ -203,6 +203,11 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
     private void jRBmateriasInscrptiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasInscrptiasActionPerformed
         jRBmateriasnoinscriptas.setSelected(false);
+        limpiarTabla();
+        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
+        materias = (ArrayList<Materia>) iData.obtenerMateriasCursadas(alum.getIdAlumno());
+
+        llenarTabla(materias);
     }//GEN-LAST:event_jRBmateriasInscrptiasActionPerformed
 
 
@@ -232,7 +237,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }
 
     private void armarCombox() {
-/*
+        /*
         try {
             //miConexion conexion = new miConexion("jdbc:mariadb://localhost:3306/universidadulp", "root", "");
 
@@ -257,13 +262,13 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, " error ");
         }
 
-       */
+         */
 
-       alumnos = (ArrayList<Alumno>) aData.listarAlumnos();
-       
+        alumnos = (ArrayList<Alumno>) aData.listarAlumnos();
+
         for (Alumno alumn : alumnos) {
             jCAlumnos.addItem(alumn);
-            
+
         }
     }
 
