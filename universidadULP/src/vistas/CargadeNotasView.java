@@ -73,6 +73,8 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(60, 149, 240));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));

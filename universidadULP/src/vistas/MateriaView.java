@@ -283,7 +283,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             mData.guardarMateria(materia);
             vaciarCampos();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
+            JOptionPane.showMessageDialog(null, "Error, No se puede agregar Materia");
 
 //        } catch (SQLException ex) {
 //           JOptionPane.showMessageDialog(null, "Error de consulta");

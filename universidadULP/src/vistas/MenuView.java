@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lucas E. Sayago
@@ -116,9 +118,9 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMConsultas);
 
         jMSalir.setText("Salir");
-        jMSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMSalirActionPerformed(evt);
+        jMSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMSalirMouseClicked(evt);
             }
         });
         jMenuBar1.add(jMSalir);
@@ -234,10 +236,18 @@ public class MenuView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMAlumnoPorMateriaActionPerformed
 
-    private void jMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirActionPerformed
-      
-    }//GEN-LAST:event_jMSalirActionPerformed
-
+    private void jMSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirMouseClicked
+        int result = JOptionPane.showConfirmDialog(
+                        MenuView.this,
+                        "¿Estás seguro de que deseas cerrar la ventana?",
+                        "Confirmar cierre",
+                        JOptionPane.YES_NO_OPTION
+                );
+                 if (result == JOptionPane.YES_OPTION) {
+                    // Cierra la ventana
+                    dispose();
+                };
+    }//GEN-LAST:event_jMSalirMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
