@@ -116,6 +116,11 @@ public class MenuView extends javax.swing.JFrame {
         jMenuBar1.add(jMConsultas);
 
         jMSalir.setText("Salir");
+        jMSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMSalir);
 
         setJMenuBar(jMenuBar1);
@@ -229,9 +234,11 @@ public class MenuView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMAlumnoPorMateriaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirActionPerformed
+      
+    }//GEN-LAST:event_jMSalirActionPerformed
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

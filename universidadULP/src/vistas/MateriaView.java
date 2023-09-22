@@ -21,6 +21,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private MateriaData mData = new MateriaData();
 
     public MateriaView() {
+        this.setTitle("Formulario Materias");
         initComponents();
         jBNuevo.setEnabled(false);
         jBEliminar.setEnabled(false);
@@ -109,7 +110,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
 
-        jBNuevo.setText("Nuevo");
+        jBNuevo.setText("Nueva Materia");
         jBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBNuevoActionPerformed(evt);
@@ -145,7 +146,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                             .addComponent(jBNuevo)
                             .addGap(28, 28, 28)
                             .addComponent(jBEliminar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                             .addComponent(jBGuardar))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,23 +155,22 @@ public class MateriaView extends javax.swing.JInternalFrame {
                             .addGap(26, 26, 26)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTAnio)
-                                    .addGap(20, 20, 20))
-                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jRBActivo)
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jTAnio)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel2))
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTNombre)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jBBuscar))
-                                .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                    .addComponent(jTCodigo)
+                                    .addGap(43, 43, 43)
+                                    .addComponent(jBBuscar)
+                                    .addGap(9, 9, 9))))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,6 +217,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         vaciarCampos();
         try {
             if (jTCodigo != null) {
+
                 Materia mate = mData.buscarMateria(Integer.parseInt(jTCodigo.getText()));
                 jTNombre.setText(mate.getNombre());
                 jTAnio.setText(mate.getAnioMateria() + "");
@@ -239,7 +240,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
 
         }
-        HabilitarBotonNuevo();
+        HabilitarBotonNuevoYEliminar();
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
@@ -252,15 +253,15 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTCodigoKeyReleased
 
     private void jTNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreKeyReleased
-        HabilitarBotonNuevo();
+        HabilitarBotonNuevoYEliminar();
     }//GEN-LAST:event_jTNombreKeyReleased
 
     private void jTAnioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAnioKeyReleased
-        HabilitarBotonNuevo();
+        HabilitarBotonNuevoYEliminar();
     }//GEN-LAST:event_jTAnioKeyReleased
 
     private void jRBActivoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRBActivoKeyReleased
-        HabilitarBotonNuevo();
+        HabilitarBotonNuevoYEliminar();
     }//GEN-LAST:event_jRBActivoKeyReleased
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -277,11 +278,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
-        try{
+        try {
             Materia materia = new Materia(Integer.parseInt(jTCodigo.getText()), jTNombre.getText(), Integer.parseInt(jTAnio.getText()), jRBActivo.isSelected());
             mData.guardarMateria(materia);
             vaciarCampos();
-        }catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
 
 //        } catch (SQLException ex) {
@@ -289,16 +290,16 @@ public class MateriaView extends javax.swing.JInternalFrame {
 //        }
     }//GEN-LAST:event_jBNuevoActionPerformed
     }
-    
+
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-         try{
-              Materia materia = new Materia(Integer.parseInt(jTCodigo.getText()), jTNombre.getText(), Integer.parseInt(jTAnio.getText()), jRBActivo.isSelected());
+        try {
+            Materia materia = new Materia(Integer.parseInt(jTCodigo.getText()), jTNombre.getText(), Integer.parseInt(jTAnio.getText()), jRBActivo.isSelected());
             mData.modificarMateria(materia);
             vaciarCampos();
-             
-        }catch (NumberFormatException ex) {
+
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Error, Materia no eliminada");
-    }    
+        }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
 
@@ -318,25 +319,28 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     // End of variables declaration//GEN-END:variables
 
-    private void HabilitarBotonNuevo() {
-        if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
+    private void HabilitarBotonNuevoYEliminar() {
+   /*    if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
 
             //if (mData.buscarMateria(Integer.parseInt(jTCodigo.getText())) == null) {
+            jBNuevo.setEnabled(true);
+            jBEliminar.setEnabled(false);
 
-                jBNuevo.setEnabled(true);
-                jBEliminar.setEnabled(false);
-            } else if(jRBActivo.isSelected()){
-                jBEliminar.setEnabled(true);
-                jBNuevo.setEnabled(false);
-            }
+        } else if (jRBActivo.isSelected()) {
 
-        
+            jBEliminar.setEnabled(true);
+            jBNuevo.setEnabled(false);
+
+        }*/
+   
+
     }
 
     private void vaciarCampos() {
         jTAnio.setText("");
         jTNombre.setText("");
         jRBActivo.setSelected(false);
+
     }
 
 }
