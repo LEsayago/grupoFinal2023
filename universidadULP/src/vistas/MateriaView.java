@@ -222,6 +222,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 jTNombre.setText(mate.getNombre());
                 jTAnio.setText(mate.getAnioMateria() + "");
                 jRBActivo.setSelected(mate.isActivo());
+                jBEliminar.setEnabled(true);
 
                 /*
                 if(mate!=null){
@@ -240,7 +241,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
 
         }
-        HabilitarBotonNuevoYEliminar();
+        //HabilitarBotonNuevoYEliminar();
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
@@ -320,7 +321,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void HabilitarBotonNuevoYEliminar() {
-   /*    if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
+       if (jTCodigo != null && jTNombre != null && jTAnio != null && jRBActivo != null) {
 
             //if (mData.buscarMateria(Integer.parseInt(jTCodigo.getText())) == null) {
             jBNuevo.setEnabled(true);
@@ -331,7 +332,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             jBEliminar.setEnabled(true);
             jBNuevo.setEnabled(false);
 
-        }*/
+        }
    
 
     }
