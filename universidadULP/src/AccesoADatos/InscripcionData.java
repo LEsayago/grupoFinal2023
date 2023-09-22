@@ -202,6 +202,7 @@ public class InscripcionData {
             if (exito > 0) {
                 JOptionPane.showMessageDialog(null, " Nota actualizada.");
             }
+             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " " + ex.getMessage());
         }

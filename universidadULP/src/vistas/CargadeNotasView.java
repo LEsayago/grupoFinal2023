@@ -12,6 +12,7 @@ import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -191,10 +192,12 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
 
             int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
             double nota = Double.parseDouble(modelo.getValueAt(seleccionDeFila, 2).toString());
-
+            //JOptionPane.showMessageDialog(null, "" + alumn.getIdAlumno() + "," + idMateria + "," + nota);
             iData.actualizarNota(alumn.getIdAlumno(), idMateria, nota);
+            limpiarTabla();
 
     }//GEN-LAST:event_botonGuardarActionPerformed
+        llenarTabla(inscripciones);
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -215,18 +218,19 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         modelo.addColumn(" Código ");
         modelo.addColumn(" Nombre ");
         modelo.addColumn(" Nota ");
-        modelo.addColumn("alumno");
-        jTabla.getColumnModel().getColumn(3).setPreferredWidth(0);
-        jTabla.getColumnModel().getColumn(3).setMinWidth(0);
-        jTabla.getColumnModel().getColumn(3).setMaxWidth(0);
+        // modelo.addColumn("alumno");
+//        jTabla.getColumnModel().getColumn(3).setPreferredWidth(0);
+//        jTabla.getColumnModel().getColumn(3).setMinWidth(0);
+//        jTabla.getColumnModel().getColumn(3).setMaxWidth(0);
         jTabla.setModel(modelo);
 
     }
 
     private void llenarTabla(ArrayList<Inscripcion> inscr) {
+        limpiarTabla();
 
         for (Inscripcion xInscripcion : inscr) {
-            Object[] rowData = {xInscripcion.getMateria().getIdMateria(), xInscripcion.getMateria().getNombre(), xInscripcion.getNota(), xInscripcion};
+            Object[] rowData = {xInscripcion.getMateria().getIdMateria(), xInscripcion.getMateria().getNombre(), xInscripcion.getNota()/*, xInscripcion*/};
             modelo.addRow(rowData);
 
         }
