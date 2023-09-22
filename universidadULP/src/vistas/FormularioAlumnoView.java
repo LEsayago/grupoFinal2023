@@ -70,11 +70,6 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
         jLabel5.setText("Fecha de Nacimiento");
 
         jRBActivo.setText("Activo");
-        jRBActivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRBActivoActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel6.setText("   Alumno");
@@ -199,13 +194,13 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             aData.guardarAlumno(alum);
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "El alumno no se agregó. Gil. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "El alumno no se agregó.  " + ex.getMessage());
         }
 
     }//GEN-LAST:event_jBNuevoActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        try {
+     try {
             Alumno alum = aData.buscarAlumnoPorDni(Integer.parseInt(jTDocumento.getText()));
 
             alum.setApellido(jTApellido.getText());
@@ -216,13 +211,12 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             aData.modificarAlumno(alum);
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "El alumno no se modificó. Gil. " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "El alumno no se modificó. " + ex.getMessage());
         }
+     catch(NullPointerException ex){
+        JOptionPane.showMessageDialog(null, "El alumno no se modificó. " + ex.getMessage());
+                 }
     }//GEN-LAST:event_jBGuardarActionPerformed
-
-    private void jRBActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBActivoActionPerformed
-
-    }//GEN-LAST:event_jRBActivoActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
 
