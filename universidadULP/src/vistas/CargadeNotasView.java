@@ -195,11 +195,13 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
             int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
             double nota = Double.parseDouble(modelo.getValueAt(seleccionDeFila, 2).toString());
             //JOptionPane.showMessageDialog(null, "" + alumn.getIdAlumno() + "," + idMateria + "," + nota);
-            iData.actualizarNota(alumn.getIdAlumno(), idMateria, nota);
+            iData.actualizarNota(alumn.getIdAlumno(), idMateria, nota);           
             limpiarTabla();
-
+            jCAlumnosActionPerformed(evt);
     }//GEN-LAST:event_botonGuardarActionPerformed
-        llenarTabla(inscripciones);
+       // llenarTabla(inscripciones);
+       
+        
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
