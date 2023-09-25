@@ -6,22 +6,18 @@
 package vistas;
 
 import AccesoADatos.AlumnoData;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import AccesoADatos.Conexion;
 import AccesoADatos.InscripcionData;
 import AccesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.List;
+import javax.swing.RowSorter;
+import javax.swing.RowSorter.SortKey;
+import javax.swing.SortOrder;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -206,13 +202,12 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         jBAnularInscripcion.setEnabled(false);
 
         jRBmateriasInscriptas.setSelected(false);
-        
-       
+
         Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
         materias = (ArrayList<Materia>) iData.obtenerMateriasNoCursadas(alum.getIdAlumno());
 
         llenarTabla(materias);
-        
+
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
@@ -233,42 +228,41 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
 // guardamos la info de la primer fila que es id
-     
-int seleccionDeFila = jTablaDeMaterias.getSelectedRow();
 
-if(seleccionDeFila>-1){
+        int seleccionDeFila = jTablaDeMaterias.getSelectedRow();
 
-        int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
+        if (seleccionDeFila > -1) {
 
-        Materia materia = mData.buscarMateria(idMateria);
+            int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
 
-        Inscripcion insc = new Inscripcion((Alumno) jCAlumnos.getSelectedItem(), materia, 0);
+            Materia materia = mData.buscarMateria(idMateria);
 
-        iData.guardarInscripcion(insc);
+            Inscripcion insc = new Inscripcion((Alumno) jCAlumnos.getSelectedItem(), materia, 0);
 
-        // vuleve a tocar el boton para actualizar
-        jRBmateriasnoinscriptasActionPerformed(evt);
-}
+            iData.guardarInscripcion(insc);
+
+            // vuleve a tocar el boton para actualizar
+            jRBmateriasnoinscriptasActionPerformed(evt);
+        }
     }//GEN-LAST:event_jBInscribirActionPerformed
 
     private void jBAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnularInscripcionActionPerformed
-        
+
         int seleccionDeFila = jTablaDeMaterias.getSelectedRow();
 
-if(seleccionDeFila>-1){
+        if (seleccionDeFila > -1) {
 
-        int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
+            int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
 
-        Alumno alum=(Alumno) jCAlumnos.getSelectedItem();
+            Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
 
-        iData.borrarInscripcionesMateriaAlumno( alum.getIdAlumno(),idMateria);
+            iData.borrarInscripcionesMateriaAlumno(alum.getIdAlumno(), idMateria);
 
-        // vuleve a tocar el boton para actualizar
-      jRBmateriasInscriptasActionPerformed(evt);
-}
+            // vuleve a tocar el boton para actualizar
+            jRBmateriasInscriptasActionPerformed(evt);
+        }
 
-      
-                       
+
     }//GEN-LAST:event_jBAnularInscripcionActionPerformed
 
 
@@ -340,12 +334,45 @@ if(seleccionDeFila>-1){
 
     private void llenarTabla(ArrayList<Materia> materias) {
 
+        // Limpiar la tabla (opcional, depende de tu lógica)
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+
+        // Llenar la tabla
         for (Materia xmateria : materias) {
             Object[] rowData = {xmateria.getIdMateria(), xmateria.getNombre(), xmateria.getAnioMateria()};
             modelo.addRow(rowData);
-
         }
 
-    }
+        // Habilitar el ordenamiento automático
+        jTablaDeMaterias.setAutoCreateRowSorter(true);
 
+        // Establecer un TableRowSorter (no es estrictamente necesario si solo deseas ordenamiento básico)
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+        jTablaDeMaterias.setRowSorter(sorter);
+
+        // Si deseas un ordenamiento específico por defecto (por ejemplo, por idMateria en orden ascendente)
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+
+        modelo = new DefaultTableModel() {
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                switch (columnIndex) {
+                    case 0:
+                        return Integer.class;
+                    case 1:
+                    case 2:
+                        return String.class;
+                    default:
+                        return super.getColumnClass(columnIndex);
+                }
+            }
+        };
+
+    }
 }
+
+
