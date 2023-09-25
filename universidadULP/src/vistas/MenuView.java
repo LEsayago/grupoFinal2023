@@ -5,7 +5,14 @@
  */
 package vistas;
 
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatSolarizedDarkIJTheme;
 import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.fast.FastLookAndFeel;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import com.jtattoo.plaf.luna.LunaLookAndFeel;
@@ -287,7 +294,7 @@ public class MenuView extends javax.swing.JFrame {
                   
                     // Esta es la linea donde traemos la libreria que nos cambia el aspecto de la ventana
                     
-                    UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+                    UIManager.setLookAndFeel(new FlatSolarizedDarkIJTheme());
                 
                 } catch (UnsupportedLookAndFeelException ex) {
                    JOptionPane.showMessageDialog(null, "Error en el look and feel");
