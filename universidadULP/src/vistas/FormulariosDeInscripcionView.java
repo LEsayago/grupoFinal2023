@@ -368,6 +368,8 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
                         return String.class;
                     default:
                         return super.getColumnClass(columnIndex);
+                        
+                        
                 }
             }
         };
