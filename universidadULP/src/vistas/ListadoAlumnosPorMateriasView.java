@@ -47,6 +47,9 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         jCmateria = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jBOrdenAsc = new javax.swing.JButton();
+        jBOrdenDesc = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 255));
         setClosable(true);
@@ -76,6 +79,22 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jBOrdenAsc.setText("A-Z");
+        jBOrdenAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenAscActionPerformed(evt);
+            }
+        });
+
+        jBOrdenDesc.setText("Z-A");
+        jBOrdenDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenDescActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Orden");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +112,14 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
                         .addComponent(jCmateria, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jBOrdenAsc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(5, 5, 5)
+                        .addComponent(jBOrdenDesc)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,9 +130,14 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCmateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBOrdenDesc)
+                    .addComponent(jBOrdenAsc)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,14 +155,50 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         for (Alumno alumno : listadAlumuno) {
             Object[] rowData = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(),alumno.getNombre() };
             modelo.addRow(rowData);
-
+        }
     }//GEN-LAST:event_jCmateriaActionPerformed
-    }
+
+    private void jBOrdenAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenAscActionPerformed
+        
+ // borramos las filas
+        modelo.setRowCount(0);
+
+        //llenamos el array con todos los alumnos de esa materia
+        Materia materia = (Materia) jCmateria.getSelectedItem();
+        ArrayList<Alumno> listadAlumuno = (ArrayList) idata.obtenerAlumnosXMateriaOrdenAsc(materia.getIdMateria());
+
+        //llenar la tabla con los datos de el array creado
+        for (Alumno alumno : listadAlumuno) {
+            Object[] rowData = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(),alumno.getNombre() };
+            modelo.addRow(rowData);
+        }        
+    }//GEN-LAST:event_jBOrdenAscActionPerformed
+
+    private void jBOrdenDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenDescActionPerformed
+    
+        // borramos las filas
+        modelo.setRowCount(0);
+
+        //llenamos el array con todos los alumnos de esa materia
+        Materia materia = (Materia) jCmateria.getSelectedItem();
+        ArrayList<Alumno> listadAlumuno = (ArrayList) idata.obtenerAlumnosXMateriaOrdenDesc(materia.getIdMateria());
+
+        //llenar la tabla con los datos de el array creado
+        for (Alumno alumno : listadAlumuno) {
+            Object[] rowData = {alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(),alumno.getNombre() };
+            modelo.addRow(rowData);
+        } 
+        
+    }//GEN-LAST:event_jBOrdenDescActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBOrdenAsc;
+    private javax.swing.JButton jBOrdenDesc;
     private javax.swing.JComboBox<Materia> jCmateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

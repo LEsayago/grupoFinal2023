@@ -9,8 +9,14 @@ import java.sql.*;
 import java.time.Month;
 import javax.swing.JOptionPane;
 import AccesoADatos.*;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import vistas.MenuView;
 
 /**
  *
@@ -27,33 +33,37 @@ public class UniversidadULP {
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
         InscripcionData idata = new InscripcionData();
-        
-        
-     //  md.guardarMateria(new Materia("mm", 2021, true));
-        
+/*
+        MenuView menu = new MenuView();
+        try {
+
+            UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+            menu.repaint();
+            menu.setVisible(true);
+
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(UniversidadULP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+*/
+        //  md.guardarMateria(new Materia("mm", 2021, true));
         //Alumno alumno = ad.buscarAlumno(9);
-      //  JOptionPane.showMessageDialog(null, damian.toString());
-        
-      //  Materia materia = md.buscarMateria(55);
+        //  JOptionPane.showMessageDialog(null, damian.toString());
+        //  Materia materia = md.buscarMateria(55);
+        //   JOptionPane.showMessageDialog(null, programacion.toString());
+        //    Inscripcion insc = new Inscripcion(alumno, materia, 10);
+        // idata.guardarInscripcion(insc);
+        // idata.actualizarNota(8, 3, 7.0);
+        // idata.borrarInscripcionesMateriaAlumno(8, 3);
 
-      //   JOptionPane.showMessageDialog(null, programacion.toString());
-        
-    //    Inscripcion insc = new Inscripcion(alumno, materia, 10);
-       // idata.guardarInscripcion(insc);
-   
-      // idata.actualizarNota(8, 3, 7.0);
-       
-      // idata.borrarInscripcionesMateriaAlumno(8, 3);
-
-       /* for (Inscripcion x:idata.obtenerInscripciones()){
+        /* for (Inscripcion x:idata.obtenerInscripciones()){
             
             System.out.println("Inscripcion N°: "+ x.getIdInscripcion());
             System.out.println("Apellido: "+ x.getAlumno().getApellido());
             System.out.println("Materia: "+ x.getMateria().getNombre());
             System.out.println("***************************************************");
         }
-        */
-     /*  for (Materia m:idata.obtenerMateriasCursadas(7)){
+         */
+ /*  for (Materia m:idata.obtenerMateriasCursadas(7)){
        
            Alumno alumno1= ad.buscarAlumno(7);
            System.out.println("Alumno: "+alumno1);
@@ -68,8 +78,8 @@ public class UniversidadULP {
            System.out.println("Materia: "+m.getNombre());
            System.out.println("Año: "+m.getAnioMateria());
            
-        */
-     /*
+         */
+ /*
         ArrayList<Alumno> alumnosEnMateria = (ArrayList<Alumno>) idata.obtenerAlumnosXMateria(4);
                 
         for (Alumno alumno : alumnosEnMateria) {
@@ -77,8 +87,7 @@ public class UniversidadULP {
             System.out.println(alumno.toString());
             
         }
-   */
-     
+         */
         //ad.guardarAlumno(al);
         // ad.modificarAlumno(al);
         //ad.eliminarAlumno(9);

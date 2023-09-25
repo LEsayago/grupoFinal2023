@@ -5,7 +5,15 @@
  */
 package vistas;
 
+import com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -13,9 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuView
-     */
+  
     public MenuView() {
         initComponents();
 
@@ -276,6 +282,16 @@ public class MenuView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                try {
+                  
+                    // Esta es la linea donde traemos la libreria que nos cambia el aspecto de la ventana
+                    
+                    UIManager.setLookAndFeel(new GraphiteLookAndFeel());
+                
+                } catch (UnsupportedLookAndFeelException ex) {
+                   JOptionPane.showMessageDialog(null, "Error en el look and feel");
+                }
                 new MenuView().setVisible(true);
             }
         });

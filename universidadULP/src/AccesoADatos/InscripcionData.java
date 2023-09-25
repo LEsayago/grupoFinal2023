@@ -236,5 +236,63 @@ public class InscripcionData {
 
         return alumnos;
     }
+    
+     public List<Alumno> obtenerAlumnosXMateriaOrdenAsc(int idMateria) {
+
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+
+        String sql = "SELECT a.idAlumno, dni, nombre , apellido , fechaDeNacimiento, estado "
+                + "FROM inscripcion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado=1 ORDER BY a.apellido ASC";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Alumno alumno = alumnoData.buscarAlumno(rs.getInt("idAlumno"));
+
+                alumnos.add(alumno);
+
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al ingresar a la tabla Inscripcion! " + ex.getMessage());
+        }
+
+        return alumnos;
+    }
+     
+         public List<Alumno> obtenerAlumnosXMateriaOrdenDesc(int idMateria) {
+
+        ArrayList<Alumno> alumnos = new ArrayList<>();
+
+        String sql = "SELECT a.idAlumno, dni, nombre , apellido , fechaDeNacimiento, estado "
+                + "FROM inscripcion i, alumno a WHERE i.idAlumno = a.idAlumno AND idMateria = ? AND a.estado=1 ORDER BY a.apellido DESC";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                Alumno alumno = alumnoData.buscarAlumno(rs.getInt("idAlumno"));
+
+                alumnos.add(alumno);
+
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al ingresar a la tabla Inscripcion! " + ex.getMessage());
+        }
+
+        return alumnos;
+    }
 
 }

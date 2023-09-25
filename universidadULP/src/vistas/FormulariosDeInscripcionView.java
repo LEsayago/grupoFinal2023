@@ -216,8 +216,6 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
-
-
     }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void jRBmateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasInscriptasActionPerformed
