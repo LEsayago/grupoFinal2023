@@ -52,6 +52,7 @@ public class ListadoAlumnosPorMateriasView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/fotitos/intento 3 logosinfondoaa.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Listado de Alumnos por Materia");

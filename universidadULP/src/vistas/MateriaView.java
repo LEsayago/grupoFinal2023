@@ -58,6 +58,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jBGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/fotitos/intento 3 logosinfondoaa.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Materia");

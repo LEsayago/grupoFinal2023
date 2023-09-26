@@ -73,6 +73,7 @@ public class CargadeNotasView extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setClosable(true);
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/fotitos/intento 3 logosinfondoaa.png"))); // NOI18N
 
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
