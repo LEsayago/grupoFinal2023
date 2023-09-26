@@ -331,46 +331,10 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
     private void llenarTabla(ArrayList<Materia> materias) {
 
-        // Limpiar la tabla (opcional, depende de tu lógica)
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-
-        // Llenar la tabla
         for (Materia xmateria : materias) {
             Object[] rowData = {xmateria.getIdMateria(), xmateria.getNombre(), xmateria.getAnioMateria()};
             modelo.addRow(rowData);
-        }
-
-        // Habilitar el ordenamiento automático
-        jTablaDeMaterias.setAutoCreateRowSorter(true);
-
-        // Establecer un TableRowSorter (no es estrictamente necesario si solo deseas ordenamiento básico)
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
-        jTablaDeMaterias.setRowSorter(sorter);
-
-        // Si deseas un ordenamiento específico por defecto (por ejemplo, por idMateria en orden ascendente)
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        sorter.setSortKeys(sortKeys);
-
-        modelo = new DefaultTableModel() {
-            @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                switch (columnIndex) {
-                    case 0:
-                        return Integer.class;
-                    case 1:
-                    case 2:
-                        return String.class;
-                    default:
-                        return super.getColumnClass(columnIndex);
-                        
-                        
-                }
-            }
-        };
-
+    }
     }
 }
 
