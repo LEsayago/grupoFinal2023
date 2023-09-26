@@ -173,7 +173,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\Documentos\Curso Argentina Programa 4.0\Tercer Etapa\imagenes\Picsart_23-09-25_22-50-51-297.jpg"/>
+              <Image iconType="3" name="/fotitos/fondo + logo.jpg"/>
             </Property>
           </Properties>
         </Component>

@@ -73,7 +73,7 @@ public class MenuView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(13, 63, 119));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\Documentos\\Curso Argentina Programa 4.0\\Tercer Etapa\\imagenes\\Picsart_23-09-25_22-50-51-297.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fotitos/fondo + logo.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
