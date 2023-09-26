@@ -12,8 +12,11 @@ import AccesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.RowSorter;
 import javax.swing.RowSorter.SortKey;
 import javax.swing.SortOrder;
@@ -39,7 +42,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         this.modelo = new DefaultTableModel();
         initComponents();
         armarCabecera();
-        armarCombox();
+        armarCombox(); 
     }
 
     /**
