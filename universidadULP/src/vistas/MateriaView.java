@@ -7,6 +7,8 @@ package vistas;
 
 import AccesoADatos.MateriaData;
 import entidades.Materia;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +28,12 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jBNuevo.setEnabled(false);
         jBEliminar.setEnabled(false);
     }
-
+        public Image getIconImage(){
+        
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("fotitos/ulplogoblanco.jpeg"));
+        
+        return retValue;
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

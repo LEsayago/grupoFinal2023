@@ -16,8 +16,11 @@ import com.jtattoo.plaf.fast.FastLookAndFeel;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 import com.jtattoo.plaf.hifi.HiFiLookAndFeel;
 import com.jtattoo.plaf.luna.LunaLookAndFeel;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -31,8 +34,17 @@ public class MenuView extends javax.swing.JFrame {
   
     public MenuView() {
         initComponents();
-
-    }
+      
+    }  
+        //icono del jframe
+//        @Override
+//        public Image getIconImage(){
+//        
+//        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("fotitos/ulplogoblanco.jpeg"));
+//        
+//        return retValue;
+//        }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
