@@ -103,6 +103,8 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jDateChooser1.setForeground(new java.awt.Color(187, 108, 184));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +179,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
                     .addComponent(jBNuevo)
                     .addComponent(jBEliminar)
                     .addComponent(jBGuardar))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();

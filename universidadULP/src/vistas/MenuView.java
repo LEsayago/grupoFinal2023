@@ -80,7 +80,7 @@ public class MenuView extends javax.swing.JFrame {
         );
         jDEscritorioMenuLayout.setVerticalGroup(
             jDEscritorioMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 774, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(13, 63, 119));
