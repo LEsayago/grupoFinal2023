@@ -9,6 +9,7 @@ import AccesoADatos.AlumnoData;
 import javax.swing.table.DefaultTableModel;
 import AccesoADatos.InscripcionData;
 import AccesoADatos.MateriaData;
+import com.sun.glass.events.KeyEvent;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
@@ -42,7 +43,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         this.modelo = new DefaultTableModel();
         initComponents();
         armarCabecera();
-        armarCombox(); 
+        armarCombox();
     }
 
     /**
@@ -210,37 +211,21 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBmateriasnoinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasnoinscriptasActionPerformed
-        limpiarTabla();
-
-        // corregimos los botones
-        jBInscribir.setEnabled(true);
-        jBAnularInscripcion.setEnabled(false);
-
-        jRBmateriasInscriptas.setSelected(false);
-
-        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
-        materias = (ArrayList<Materia>) iData.obtenerMateriasNoCursadas(alum.getIdAlumno());
-
-        llenarTabla(materias);
+      materiasNoInscriptas();
 
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
     private void jCAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAlumnosActionPerformed
+        limpiarTabla();
+        jRBmateriasInscriptas.setSelected(false);
+        jRBmateriasnoinscriptas.setSelected(false);
     }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void jRBmateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasInscriptasActionPerformed
-        // corregimos los botones
-        jBInscribir.setEnabled(false);
-        jBAnularInscripcion.setEnabled(true);
-
-        jRBmateriasnoinscriptas.setSelected(false);
-        limpiarTabla();
-        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
-        materias = (ArrayList<Materia>) iData.obtenerMateriasCursadas(alum.getIdAlumno());
-
-        llenarTabla(materias);
+    materiasInscriptas();
     }//GEN-LAST:event_jRBmateriasInscriptasActionPerformed
 
+    
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
 // guardamos la info de la primer fila que es id
 
@@ -257,7 +242,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             iData.guardarInscripcion(insc);
 
             // vuleve a tocar el boton para actualizar
-            jRBmateriasnoinscriptasActionPerformed(evt);
+           materiasNoInscriptas();
         }
     }//GEN-LAST:event_jBInscribirActionPerformed
 
@@ -274,7 +259,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             iData.borrarInscripcionesMateriaAlumno(alum.getIdAlumno(), idMateria);
 
             // vuleve a tocar el boton para actualizar
-            jRBmateriasInscriptasActionPerformed(evt);
+           materiasInscriptas();
         }
 
 
@@ -301,9 +286,8 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
-        
+
         jTablaDeMaterias.setModel(modelo);
-   
 
     }
 
@@ -353,8 +337,36 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         for (Materia xmateria : materias) {
             Object[] rowData = {xmateria.getIdMateria(), xmateria.getNombre(), xmateria.getAnioMateria()};
             modelo.addRow(rowData);
+        }
     }
+    
+    private void materiasNoInscriptas(){
+          limpiarTabla();
+
+        // corregimos los botones
+        jBInscribir.setEnabled(true);
+        jBAnularInscripcion.setEnabled(false);
+
+        jRBmateriasInscriptas.setSelected(false);
+
+        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
+        materias = (ArrayList<Materia>) iData.obtenerMateriasNoCursadas(alum.getIdAlumno());
+
+        llenarTabla(materias);
     }
+    
+     private void materiasInscriptas(){
+           // corregimos los botones
+        jBInscribir.setEnabled(false);
+        jBAnularInscripcion.setEnabled(true);
+
+        jRBmateriasnoinscriptas.setSelected(false);
+        limpiarTabla();
+        Alumno alum = (Alumno) jCAlumnos.getSelectedItem();
+        materias = (ArrayList<Materia>) iData.obtenerMateriasCursadas(alum.getIdAlumno());
+
+        llenarTabla(materias);
+       
+     }
+    
 }
-
-
