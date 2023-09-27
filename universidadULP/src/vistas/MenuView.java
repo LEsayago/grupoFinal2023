@@ -198,6 +198,7 @@ public class MenuView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMFormuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormuMateriaActionPerformed
