@@ -144,6 +144,11 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
                 jBInscribirActionPerformed(evt);
             }
         });
+        jBInscribir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBInscribirKeyReleased(evt);
+            }
+        });
 
         jBAnularInscripcion.setText("Anular Inscripcion");
         jBAnularInscripcion.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +216,7 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBmateriasnoinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasnoinscriptasActionPerformed
-      materiasNoInscriptas();
+        materiasNoInscriptas();
 
     }//GEN-LAST:event_jRBmateriasnoinscriptasActionPerformed
 
@@ -222,28 +227,12 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCAlumnosActionPerformed
 
     private void jRBmateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBmateriasInscriptasActionPerformed
-    materiasInscriptas();
+        materiasInscriptas();
     }//GEN-LAST:event_jRBmateriasInscriptasActionPerformed
 
-    
+
     private void jBInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInscribirActionPerformed
-// guardamos la info de la primer fila que es id
-
-        int seleccionDeFila = jTablaDeMaterias.getSelectedRow();
-
-        if (seleccionDeFila > -1) {
-
-            int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
-
-            Materia materia = mData.buscarMateria(idMateria);
-
-            Inscripcion insc = new Inscripcion((Alumno) jCAlumnos.getSelectedItem(), materia, 0);
-
-            iData.guardarInscripcion(insc);
-
-            // vuleve a tocar el boton para actualizar
-           materiasNoInscriptas();
-        }
+        inscribirMateria();
     }//GEN-LAST:event_jBInscribirActionPerformed
 
     private void jBAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnularInscripcionActionPerformed
@@ -259,11 +248,17 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             iData.borrarInscripcionesMateriaAlumno(alum.getIdAlumno(), idMateria);
 
             // vuleve a tocar el boton para actualizar
-           materiasInscriptas();
+            materiasInscriptas();
         }
 
 
     }//GEN-LAST:event_jBAnularInscripcionActionPerformed
+
+    private void jBInscribirKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBInscribirKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+        }
+    }//GEN-LAST:event_jBInscribirKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -339,9 +334,9 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             modelo.addRow(rowData);
         }
     }
-    
-    private void materiasNoInscriptas(){
-          limpiarTabla();
+
+    private void materiasNoInscriptas() {
+        limpiarTabla();
 
         // corregimos los botones
         jBInscribir.setEnabled(true);
@@ -354,9 +349,9 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
 
         llenarTabla(materias);
     }
-    
-     private void materiasInscriptas(){
-           // corregimos los botones
+
+    private void materiasInscriptas() {
+        // corregimos los botones
         jBInscribir.setEnabled(false);
         jBAnularInscripcion.setEnabled(true);
 
@@ -366,7 +361,27 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         materias = (ArrayList<Materia>) iData.obtenerMateriasCursadas(alum.getIdAlumno());
 
         llenarTabla(materias);
-       
-     }
-    
+
+    }
+
+    private void inscribirMateria() {
+        // guardamos la info de la primer fila que es id
+
+        int seleccionDeFila = jTablaDeMaterias.getSelectedRow();
+
+        if (seleccionDeFila > -1) {
+
+            int idMateria = Integer.parseInt(modelo.getValueAt(seleccionDeFila, 0).toString());
+
+            Materia materia = mData.buscarMateria(idMateria);
+
+            Inscripcion insc = new Inscripcion((Alumno) jCAlumnos.getSelectedItem(), materia, 0);
+
+            iData.guardarInscripcion(insc);
+
+            // vuleve a tocar el boton para actualizar
+            materiasNoInscriptas();
+        }
+    }
+
 }
