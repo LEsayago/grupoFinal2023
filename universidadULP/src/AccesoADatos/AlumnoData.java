@@ -74,7 +74,7 @@ public class AlumnoData {
 
             if (exito == 1) {
 
-                JOptionPane.showMessageDialog(null, "Alumno Eliminado");
+                //JOptionPane.showMessageDialog(null, "Alumno Eliminado");
 
             }
         } catch (SQLException ex) {

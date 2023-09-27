@@ -292,7 +292,7 @@ public class FormularioAlumnoView extends javax.swing.JInternalFrame {
             //JOptionPane.showMessageDialog(this,alumno.getIdAlumno());
             if (alumno != null && alumno.isEstado()) {
 
-                JOptionPane.showMessageDialog(this, alumno.getIdAlumno());
+                //JOptionPane.showMessageDialog(this, alumno.getIdAlumno());
                 aData.eliminarAlumno(alumno.getIdAlumno());
                 JOptionPane.showMessageDialog(this, "Alumno eliminado con exito");
             } else {
