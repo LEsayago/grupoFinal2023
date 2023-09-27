@@ -110,6 +110,12 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             }
         });
 
+        jTablaDeMaterias = new javax.swing.JTable(){
+            public  boolean isCellEditable(int row, int col){
+                return false;
+            }
+
+        };
         jTablaDeMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -120,7 +126,15 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTablaDeMaterias);
 
         jBInscribir.setText("Inscribir");
@@ -287,8 +301,9 @@ public class FormulariosDeInscripcionView extends javax.swing.JInternalFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
-
+        
         jTablaDeMaterias.setModel(modelo);
+   
 
     }
 
